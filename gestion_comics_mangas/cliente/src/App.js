@@ -1,9 +1,9 @@
-import './App.css';
+import './App.css'
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Comics from './pages/comics';
+import Comics from './pages/comics'
 
 
 function App() {
@@ -22,4 +22,4 @@ function App() {
   );
 }
 
-export default App;
+export default App
