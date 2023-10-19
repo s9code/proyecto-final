@@ -2,16 +2,16 @@ import express from 'express'
 import db from '../bd.js'
 const router = express.Router()
 
-router.get('/comics', (req, res) => {
-  const q = 'SELECT * FROM comics'
+router.get('/mangas', (req, res) => {
+  const q = 'SELECT * FROM mangas'
   db.query(q, (err, data) => {
     if (err) return res.json(err)
     return res.json(data)
   })
 })
 
-router.post('/comics', (req, res) => {
-  const q = 'INSERT INTO comics (`titulo_comic`, `autor_comic`, `publicacion_comic`) VALUES (?)'
+router.post('/mangas', (req, res) => {
+  const q = 'INSERT INTO mangas (`titulo_manga`, `autor_manga`, `publicacion_manga`) VALUES (?)'
   const values = [
     'Titulo del backend',
     'Auto del backend',
@@ -20,7 +20,7 @@ router.post('/comics', (req, res) => {
 
   db.query(q, [values], (err, data) => {
     if (err) return res.json(err)
-    return res.json('Comic ingresado con exito')
+    return res.json('Manga ingresado con exito')
   })
 })
 
