@@ -1,6 +1,6 @@
-const express = require('express');
+const express = require('express')
 
-const router = express.Router();
+const router = express.Router()
 
 // Obtener todos los comics
 router.get('/comics', function(req, res) {
@@ -16,15 +16,15 @@ router.get('/comics', function(req, res) {
 });
 
 // Crear nuevos comics
-router.post('/comics', comicController.createComics);
+router.post('/comics', comicController.createComics)
 
 // Obtener un comic por su ID
-router.get('/comics/:id', comicController.getComicById);
+router.get('/comics/:id', comicController.getComicById)
 
 // Actualizar un comic por su ID
-router.get('/comics/:id', comicController.updateComic);
+router.get('/comics/:id', comicController.updateComic)
 
-//eliminar un comic por su ID
-router.get('/comics/:id', comicController.deleteComic);
+// eliminar un comic por su ID
+router.get('/comics/:id', comicController.deleteComic)
 
-module.exports = comicsRouter;
+module.exports = comicsRouter
