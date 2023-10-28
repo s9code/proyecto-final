@@ -13,7 +13,9 @@ function Registro() {
   const [errors, setErrors] = useState({})
 
   const handleChange = (e) => {
-    setValues({...values, [e.target.name]:[e.target.value]})
+    //setValues({...values, [e.target.name]:[e.target.value]})
+    const {name , value } = e.target;
+    setValues({...values, [name]: value})
   }
   const handleSubmit = (e) => {
     e.preventDefault();
