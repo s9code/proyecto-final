@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { useNavigate } from "react-router-dom"
 
 
 function Registro() {
@@ -11,6 +12,7 @@ function Registro() {
   })
 
   const [errors, setErrors] = useState({})
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     //setValues({...values, [e.target.name]:[e.target.value]})
@@ -39,6 +41,12 @@ function Registro() {
     if(Object.keys(validationErrors).length === 0) {
       console.log('usuario registrado')
       axios.post('http://localhost:8081/registro', values)
+      .then(() => {
+        navigate('/coleccion')
+      })
+      .catch((error) => {
+        console.error('Error en la peticion', error)
+      })
     }else {
       console.log('Datos de usuario incorrectos')
     }
@@ -81,7 +89,7 @@ return (
         <button>Crear usuario</button>
       </form>
       <p>¿Ya tienes una cuenta?</p>
-      <button >Ingresar</button>
+      <button onClick={() => navigate('/usuario')}>Ingresar</button>
   </div>
   )
 }

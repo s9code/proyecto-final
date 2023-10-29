@@ -7,11 +7,17 @@ router.post('/usuario', (req, res) => {
   const q = 'SELECT * FROM usuario WHERE correo_usuario = ? AND contra_usuario = ?'
 
   db.query(q, [req.body.email, req.body.password], (err, data) => {
-    if (err) return res.json('Error')
-    if (data.length > 0) {
-      return res.json('Logeado con éxito')
+    if (err) {
+      console.error('Error en la consulta a la bae de datos: ' + err.message)
+      res.json({ authenticated: false })
     } else {
-      return res.json('Usuario o contraseña incorrectos')
+      if (data.length > 0) {
+        console.error('Logeado con exito')
+        res.json({ authenticated: true })
+      } else {
+        console.error('Datos incorrectos')
+        res.json({ authenticated: false })
+      }
     }
   })
 })
