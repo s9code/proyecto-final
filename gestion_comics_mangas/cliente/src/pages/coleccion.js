@@ -1,6 +1,7 @@
 import React from 'react'
 import { useAuth } from '../componentes/auth'
 import { useNavigate } from 'react-router-dom'
+import Navbar from '../componentes/navbar'
 
 function Coleccion() {
 
@@ -13,6 +14,7 @@ function Coleccion() {
     }
   return (
     <>
+      <Navbar />
       <h1>Hola {auth.user} </h1>
       <button onClick={handleLogout}>Desconectar</button>
     </>
