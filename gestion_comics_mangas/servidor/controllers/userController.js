@@ -5,6 +5,26 @@ import jwt from 'jsonwebtoken'
 
 const router = express.Router()
 
+const verifyUser = (req, res, next) => {
+  const token = req.cookies.token
+  if (!token) {
+    return res.json({ Message: 'we need token please provide it' })
+  } else {
+    jwt.verify(token, 'our-jsonwebtoken-secret-key', (err, decoded) => {
+      if (err) {
+        return res.json({ Message: 'Authentication Error.' })
+      } else {
+        req.name = decoded.name
+        next()
+      }
+    })
+  }
+}
+
+router.get('/', verifyUser, (req, res) => {
+  return res.json({ Status: 'Success', name: req.name })
+})
+
 router.post('/usuario', (req, res) => {
   const q = 'SELECT * FROM usuario WHERE correo_usuario = ? AND contra_usuario = ?'
 

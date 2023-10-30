@@ -33,6 +33,10 @@ app.get('/', (req, res) => {
   res.send('Bienvenido a tu aplicacion Web!')
 })
 
+app.get('/logout', (req, res) => {
+  res.clearCookie('token')
+})
+
 app.listen(port, () => {
   console.log(`Servidor en funcionamiento en http://localhost:${port}`)
 })

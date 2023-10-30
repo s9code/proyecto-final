@@ -15,12 +15,10 @@ function Usuario() {
     .then((res) => {
         console.log((res))
         if (res.data.authenticated){
-          
-          navigate('/coleccion')
+            navigate('/coleccion')
         }else {
           setLoginError('Credenciales incorrectas')
         }
-        
     })
     .catch((error) => {
         console.error('Error en la peticion', error)
