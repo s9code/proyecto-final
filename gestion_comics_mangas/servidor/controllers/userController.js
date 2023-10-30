@@ -1,5 +1,7 @@
 import express from 'express'
 import db from '../bd.js'
+// Autenticacion de usuario Cookies
+import jwt from 'jsonwebtoken'
 
 const router = express.Router()
 
@@ -12,6 +14,11 @@ router.post('/usuario', (req, res) => {
       res.json({ authenticated: false })
     } else {
       if (data.length > 0) {
+        // CREAR TOKENS
+        const name = data[0].name
+        const token = jwt.sign({ name }, 'our-jsonwebtoken-secret-key', { expiresIn: '1d' })
+        res.cookie('token', token)
+        // -------------
         console.error('Logeado con exito')
         res.json({ authenticated: true })
       } else {

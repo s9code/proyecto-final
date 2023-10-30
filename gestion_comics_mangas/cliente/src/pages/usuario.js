@@ -8,7 +8,7 @@ function Usuario() {
   const navigate = useNavigate()
   const [loginError, setLoginError] = useState(null)
 
-  
+  axios.defaults.withCredentials = true;
   function handleSubmit(event) {
     event.preventDefault();
     axios.post('http://localhost:8081/usuario', {email, password})

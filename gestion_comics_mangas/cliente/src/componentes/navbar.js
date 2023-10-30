@@ -23,8 +23,8 @@ function Navbar() {
       <NavLink style={navLinkStyles} to='/products'>
         Products
       </NavLink>
-      <NavLink style={navLinkStyles} to='/profile'>
-        Profile
+      <NavLink style={navLinkStyles} to='/coleccion'>
+        Coleccion
       </NavLink>
       {!auth.user && (
         <NavLink style={navLinkStyles} to='/usuario'>

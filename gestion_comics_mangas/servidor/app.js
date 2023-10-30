@@ -1,5 +1,6 @@
 import express from 'express'
 import cors from 'cors'
+import cookieParser from 'cookie-parser'
 // Importar controlador comics
 import comicsController from './controllers/comicController.js'
 import mangaController from './controllers/mangaController.js'
@@ -9,7 +10,16 @@ import signupController from './controllers/signupController.js'
 const app = express()
 const port = 8081
 
-app.use(cors())
+// usar cors y cookieParser para crear tokens
+app.use(cors(
+  {
+    origin: ['http://localhost:3000'],
+    methods: ['POST, GET'],
+    credentials: true
+  }
+))
+
+app.use(cookieParser())
 
 // Middleware para procesar datos JSON en solicitudes POST
 app.use(express.json())
