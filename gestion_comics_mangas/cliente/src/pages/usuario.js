@@ -6,6 +6,7 @@ function Usuario() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+
   const navigate = useNavigate()
 
   axios.defaults.withCredentials = true
@@ -16,7 +17,7 @@ function Usuario() {
       if(res.data.Status === 'Success') {
         navigate('/coleccion')
       }else {
-        alert(res.data.Message)
+        console.log (res.data.Message)
       }
     })
     .catch(err => console.log(err))
@@ -47,7 +48,7 @@ function Usuario() {
           </input>
         </div>
         <button>Acceder</button>
-        <button>Regresar</button>
+        <button onClick={() => navigate('/')}>Regresar</button>
       </form>
     </div>
   )

@@ -35,7 +35,7 @@ router.post('/usuario', (req, res) => {
       res.cookie('token', token)
       return res.json({ Status: 'Success' })
     } else {
-      return res.json({ Message: 'No Records existed' })
+      return res.json({ Message: 'Usuario Incorrecto' })
     }
   })
 })
