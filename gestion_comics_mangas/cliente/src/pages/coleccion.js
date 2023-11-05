@@ -38,7 +38,7 @@ function Coleccion() {
       {
         auth ?
       <div>
-        <h1>Hola {name}</h1>
+        <h1>Crea tu coleccion {name}</h1>
         <button onClick={handleLogout}>Logout</button>
       </div>
       :

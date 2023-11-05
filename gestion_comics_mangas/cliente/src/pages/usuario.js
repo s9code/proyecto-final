@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 function Usuario() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-
+  const [errorMessage, setErrorMessage] = useState('')
 
   const navigate = useNavigate()
 
@@ -17,7 +17,7 @@ function Usuario() {
       if(res.data.Status === 'Success') {
         navigate('/coleccion')
       }else {
-        console.log (res.data.Message)
+        setErrorMessage(res.data.Message)
       }
     })
     .catch(err => console.log(err))
@@ -49,8 +49,10 @@ function Usuario() {
         </div>
         <button>Acceder</button>
         <button onClick={() => navigate('/')}>Regresar</button>
+        {<span>{errorMessage}</span>}
       </form>
     </div>
+
   )
 }
 

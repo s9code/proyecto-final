@@ -8,10 +8,7 @@ import Comics from './pages/comics'
 import Usuario from './pages/usuario'
 import Registro from './pages/registro'
 import Coleccion from './pages/coleccion'
-
-
-
-
+import AddComic from './pages/addComic'
 
 function App() {
   return (
@@ -20,6 +17,7 @@ function App() {
         <Route path='/' element={<Registro />}></Route>
         <Route path='/usuario' element={<Usuario />}></Route>
         <Route path='/comics' element={<Comics />}></Route>
+        <Route path='/addcomics' element={<AddComic />}></Route>
         <Route path='/coleccion' element={<Coleccion />}></Route>
       </Routes>
     </BrowserRouter>

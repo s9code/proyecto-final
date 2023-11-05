@@ -19,9 +19,10 @@ function Registro() {
     const {name , value } = e.target;
     setValues({...values, [name]: value})
   }
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     const validationErrors = {}
 
     if(values.name === '') {
