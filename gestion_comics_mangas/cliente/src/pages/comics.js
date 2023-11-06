@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 
 const Comics = () => {
@@ -42,6 +42,7 @@ const Comics = () => {
             <h3>Año de publicacion del Comic</h3>
             <p>{comics.publicacion_comic}</p>
             <button onClick={() => handleDelete(comics.id_comic)}>Borrar</button>
+            <button ><Link to={`/update/${comics.id_comic}`}>Modificar</Link></button>
           </div>
         ))}
       </div>

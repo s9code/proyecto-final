@@ -9,6 +9,7 @@ import Usuario from './pages/usuario'
 import Registro from './pages/registro'
 import Coleccion from './pages/coleccion'
 import AddComic from './pages/addComic'
+import Update from './pages/update'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path='/comics' element={<Comics />}></Route>
         <Route path='/addcomics' element={<AddComic />}></Route>
         <Route path='/coleccion' element={<Coleccion />}></Route>
+        <Route path='/update/:id' element={<Update />}></Route>
       </Routes>
     </BrowserRouter>
    

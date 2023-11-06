@@ -2,34 +2,6 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
-/* const AddComic = () => {
-  const [comic, setComic] = useState({
-    titulo: '',
-    autor: '',
-    cover: '',
-    publicacion: ''
-  })
-
-  const [error, setError] = useState(false)
-  
-  const navigate = useNavigate()
-    
-  const handleChange = (e) => {
-    const {titulo , value } = e.target;
-    setComic({...comic, [titulo]: value})
-  }
-
-  const handleClick = e => {
-    e.preventDefault()
-    try {
-      axios.post('http://localhost:8081/comics', comic) 
-      navigate('/comics')  
-    }catch(err) {
-      console.log(err)
-      setError(true)
-    }
-  } */
-
   function AddComic() {
   
     const [comic, setComic] = useState({
