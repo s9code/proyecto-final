@@ -15,7 +15,6 @@ import { useNavigate } from 'react-router-dom'
     const navigate = useNavigate()
   
     const handleChange = (e) => {
-      //setValues({...values, [e.target.name]:[e.target.value]})
       const {name , value } = e.target;
       setComic({...comic, [name]: value})
     }
@@ -41,7 +40,6 @@ import { useNavigate } from 'react-router-dom'
       setErrors(validationErrors)
   
       if(Object.keys(validationErrors).length === 0) {
-        console.log('comic registrado')
         axios.post('http://localhost:8081/addcomics', comic)
         .then(() => {
           navigate('/comics')

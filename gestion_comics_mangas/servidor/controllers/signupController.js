@@ -3,6 +3,7 @@ import db from '../bd.js'
 
 const router = express.Router()
 
+// REGISTRAR USUARIO
 router.post('/registro', (req, res) => {
   const q = 'INSERT INTO usuario (`nombre_usuario`, `correo_usuario`, `contra_usuario`) values (?)'
   const values = [
