@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
-
+import { Link } from 'react-router-dom'
 
 function Coleccion() {
 
@@ -44,8 +43,7 @@ function Coleccion() {
       :
       <div>
         <h3>{message}</h3>
-        <h1>Login now</h1>
-        <Link to='/usuario'>Login</Link>
+        <p><Link to='/usuario'>Ingresa con tu usuario</Link> o <Link to='/'>Crea una cuenta</Link></p>
       </div>
       }
       
