@@ -5,24 +5,42 @@ import { useNavigate, Link } from 'react-router-dom'
 
 
 const Comics = () => {
+
   const [auth, setAuth] = useState(false)
-  const [ comics, setComics] = useState([])
+  const [comics, setComics] = useState([])
+  const [name, setName] = useState('')
   const [message, setMessage] = useState('')
   const navigate = useNavigate()
 
+  useEffect(() => {
+    axios.get('http://localhost:8081/comics')
+    .then(res => {
+        setComics(res.data)
+    })
+  }, )
+
+
   axios.defaults.withCredentials = true
   useEffect(() => {
-    axios.get("http://localhost:8081/comics")
+    axios.get('http://localhost:8081')
     .then(res => {
       if (res.data.Status === 'Success') {
         setAuth(true)
-        setComics(res.data.comics)
+        setName(res.data.name)
       }else {
         setAuth(false)
         setMessage(res.data.Message)
       }
     })
   }, [])
+
+
+  const handleLogout = () => {
+    axios.get('http://localhost:8081/usuario/logout')
+    .then(res => {
+        navigate('/usuario')
+    }).catch(err => console.log(err))
+  }
 
   const handleDelete = (id) => {
     try {
@@ -33,20 +51,13 @@ const Comics = () => {
     }
   }
 
-  const handleLogout = () => {
-    axios.get('http://localhost:8081/usuario/logout')
-    .then(res => {
-        navigate('/usuario')
-    }).catch(err => console.log(err))
-  }
-
-return (
-  <div>
-    {
+  return (
+    <div>
+      {
         auth ?
       <div>
-      <h1>Coleccion de Comics</h1>
-      <button onClick={handleLogout}>Logout</button>
+        <h1>Coleccion de Comics de {name}</h1>
+        <button onClick={handleLogout}>Logout</button>
       <div>
         {comics.map((comics) => (
           <div key={comics.id_comic}>
@@ -66,7 +77,7 @@ return (
     </div>
     :
     <div>
-      <h3>Tienes que iniciar sesión</h3>
+      <h3>{message}</h3>
       <p><Link to='/usuario'>Ingresa con tu usuario</Link> o <Link to='/'>Crea una cuenta</Link></p>
     </div>
     }
