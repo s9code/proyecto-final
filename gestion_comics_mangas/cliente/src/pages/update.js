@@ -1,64 +1,84 @@
-import React, { useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import axios from 'axios'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, Link } from 'react-router-dom'
 
-  function Update() {
+function Update() {
   
-    const [comic, setComic] = useState({
-      titulo: '',
-      autor: '',
-      cover: '',
-      publicacion: '',
-    })
+  const [comic, setComic] = useState({
+    titulo: '',
+    autor: '',
+    cover: '',
+    publicacion: '',
+  })
     
-    const [errors, setErrors] = useState({})
-    const navigate = useNavigate()
-    const location = useLocation()
+  const [auth, setAuth] = useState(false)
+  const [name, setName] = useState('')
+  const [message, setMessage] = useState('')
+  const [errors, setErrors] = useState({})
+  const navigate = useNavigate()
+  const location = useLocation()
 
-    const comicId = location.pathname.split('/')[2]
+  const comicId = location.pathname.split('/')[2]
   
-    const handleChange = (e) => {
-      const {name , value } = e.target;
-      setComic({...comic, [name]: value})
+  const handleChange = (e) => {
+    const {name , value } = e.target;
+    setComic({...comic, [name]: value})
+  }
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  
+    const validationErrors = {}
+  
+    if(comic.titulo === '') {
+      validationErrors.titulo = 'Nombre del comic requerido'
+    }
+    if(comic.autor === '') {
+      validationErrors.autor = 'Nombre del autor requerido'
+    }
+    if(comic.cover === '') {
+      validationErrors.cover = 'imagen requerida'
+    }
+    if(comic.publicacion === '') {
+      validationErrors.publicacion = 'Año de publicación'
     }
   
-    const handleSubmit = (e) => {
-      e.preventDefault();
+    setErrors(validationErrors)
   
-      const validationErrors = {}
+    if(Object.keys(validationErrors).length === 0) {
+      axios.put(`http://localhost:8081/comics/${comicId}`, comic)
+      .then(() => {
+        navigate('/comics')
+      })
+      .catch((error) => {
+        console.error('Error en la peticion', error)
+      })
+    }else {
+      console.log('Datos de comic incorrectos')
+    }
   
-      if(comic.titulo === '') {
-        validationErrors.titulo = 'Nombre del comic requerido'
-      }
-      if(comic.autor === '') {
-        validationErrors.autor = 'Nombre del autor requerido'
-      }
-      if(comic.cover === '') {
-        validationErrors.cover = 'imagen requerida'
-      }
-      if(comic.publicacion === '') {
-        validationErrors.publicacion = 'Año de publicacion'
-      }
-  
-      setErrors(validationErrors)
-  
-      if(Object.keys(validationErrors).length === 0) {
-        axios.put(`http://localhost:8081/comics/${comicId}`, comic)
-        .then(() => {
-          navigate('/comics')
-        })
-        .catch((error) => {
-          console.error('Error en la peticion', error)
-        })
+  }
+
+  axios.defaults.withCredentials = true
+  useEffect(() => {
+    axios.get('http://localhost:8081')
+    .then(res => {
+      if (res.data.Status === 'Success') {
+        setAuth(true)
+        setName(res.data.name)
       }else {
-        console.log('Datos de comic incorrectos')
+        setAuth(false)
+        setMessage(res.data.Message)
       }
-  
-    }
+    })
+  }, [])
 
-  return (
+return (
+  <div>
+    {
+    auth ?
     <div>
-      <h2>Introduce un comic</h2>
+      <h2>Actualizar comic</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor='titulo'>Actualizar Titulo:</label>
@@ -101,8 +121,16 @@ import { useLocation, useNavigate } from 'react-router-dom'
         </div>
           <button onClick={handleSubmit}>Actualizar</button>
         </form>
+        <button onClick={() => navigate('/comics')}>Volver</button>
     </div>
-    )
+    :
+    <div>
+      <h3>{message}</h3>
+      <p><Link to='/usuario'>Ingresa con tu usuario</Link> o <Link to='/'>Crea una cuenta</Link></p>
+    </div>
+    }
+  </div>
+  )
 }
 
 export default Update

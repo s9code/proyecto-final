@@ -3,9 +3,9 @@ import cors from 'cors'
 import cookieParser from 'cookie-parser'
 // IMPORTAR CONTROLADORES
 import comicsController from './controllers/comicController.js'
-import mangaController from './controllers/mangaController.js'
 import userController from './controllers/userController.js'
 import signupController from './controllers/signupController.js'
+import coleccionController from './controllers/coleccionController.js'
 // -------------------------------------------------
 // ACCESO A LA BASE DE DATOS
 const port = 8081
@@ -23,9 +23,9 @@ app.use(cookieParser())
 // -------------------------------------------------
 // Middleware para procesar datos JSON en solicitudes POST
 app.use(comicsController)
-app.use(mangaController)
 app.use(userController)
 app.use(signupController)
+app.use(coleccionController)
 // -------------------------------------------------
 // RUTA DE INICIO AL SERVIDOR
 app.get('/', (req, res) => {

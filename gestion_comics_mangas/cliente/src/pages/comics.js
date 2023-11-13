@@ -1,10 +1,8 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate, Link } from 'react-router-dom'
 
-
-const Comics = () => {
+function Comics() {
 
   const [auth, setAuth] = useState(false)
   const [comics, setComics] = useState([])
@@ -56,7 +54,7 @@ const Comics = () => {
       {
         auth ?
       <div>
-        <h1>Coleccion de Comics de {name}</h1>
+        <h1>Comics</h1>
         <button onClick={handleLogout}>Logout</button>
       <div>
         {comics.map((comics) => (
@@ -70,10 +68,12 @@ const Comics = () => {
             <p>{comics.publicacion_comic}</p>
             <button onClick={() => handleDelete(comics.id_comic)}>Borrar</button>
             <button ><Link to={`/update/${comics.id_comic}`}>Modificar</Link></button>
+            <button onClick={() => navigate('/coleccion')}>Añadir a colección</button>
           </div>
         ))}
       </div>
       <button onClick={() => navigate('/addcomics')}>Añade un nuevo comic</button>
+      <button onClick={() => navigate('/coleccion')}>Ir a colección</button>
     </div>
     :
     <div>

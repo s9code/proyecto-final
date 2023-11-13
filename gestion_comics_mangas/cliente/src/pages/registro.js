@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from "react-router-dom"
 
-
 function Registro() {
   
   const [values, setValues] = useState({
@@ -15,7 +14,6 @@ function Registro() {
   const navigate = useNavigate()
 
   const handleChange = (e) => {
-    //setValues({...values, [e.target.name]:[e.target.value]})
     const {name , value } = e.target;
     setValues({...values, [name]: value})
   }
