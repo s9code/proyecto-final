@@ -38,11 +38,11 @@ function Comics() {
     axios.post(`http://localhost:8081/comics/${selectedComic}/coleccion/${selectedColeccion}`)
       .then(response => {
         console.log(response.data);
-        // Manejar la respuesta según sea necesario
+        navigate(`/coleccion/${selectedColeccion}/comics`)
       })
       .catch(error => {
         console.error('Error al asociar cómic a colección:', error);
-        // Manejar el error según sea necesario
+        
       })
   }
 

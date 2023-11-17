@@ -26,7 +26,7 @@ function App() {
         <Route path='/coleccion' element={<Coleccion />}></Route>
         <Route path='/update/:id' element={<Update />}></Route>
         <Route path='/updatecoleccion/:idCol' element={<UpdateColeccion />}></Route>
-        <Route path='/coleccionComics' element={<Coleccion />}></Route>
+        <Route path='/coleccion/:id_coleccion/comics' element={<ColeccionComics />}></Route>
       </Routes>
     </BrowserRouter>
    

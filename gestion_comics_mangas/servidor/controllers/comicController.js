@@ -61,10 +61,26 @@ router.post('/comics/:id/coleccion/:id_coleccion', (req, res) => {
   const comicId = req.params.id
   const coleccionId = req.params.id_coleccion
 
-  const q = 'INSERT INTO comic_coleccion (`id_comic`, `id_coleccion`) values (?, ?)'
-  db.query(q, [comicId, coleccionId], (err, data) => {
-    if (err) return res.json(err)
-    return res.json('Cómic asociado a la colección correctamente')
+  // Verificar si el cómic ya está asociado a la colección
+  const checkQuery = 'SELECT * FROM comic_coleccion WHERE id_comic = ? AND id_coleccion = ?'
+  db.query(checkQuery, [comicId, coleccionId], (checkErr, checkData) => {
+    if (checkErr) {
+      return res.status(500).json({ error: 'Error en la base de datos' })
+    }
+
+    if (checkData && checkData.length > 0) {
+      // El cómic ya está asociado a esta colección, enviar un mensaje de error
+      return res.status(400).json({ error: 'El cómic ya está en esta colección' })
+    } else {
+      // El cómic no está en la colección, proceder a asociarlo
+      const insertQuery = 'INSERT INTO comic_coleccion (`id_comic`, `id_coleccion`) values (?, ?)'
+      db.query(insertQuery, [comicId, coleccionId], (insertErr, insertData) => {
+        if (insertErr) {
+          return res.status(500).json({ error: 'Error al asociar el cómic a la colección' })
+        }
+        return res.status(200).json({ message: 'Cómic asociado a la colección correctamente' })
+      })
+    }
   })
 })
 

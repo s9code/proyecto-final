@@ -25,7 +25,7 @@ function Coleccion() {
       .then(res => {
         setColeccionComics(res.data);
         // Navegar a la página que muestra los cómics asociados a la colección
-        navigate(`/coleccionComics/${coleccionId}`);
+        navigate(`/coleccion/${coleccionId}/comics`)
       })
       .catch(error => {
         console.error('Error al obtener los cómics de la colección:', error);
@@ -76,13 +76,12 @@ function Coleccion() {
             <p>{coleccion.nombre_coleccion}</p>
             <h3>descripción</h3>
             <p>{coleccion.descrip_coleccion}</p>
-            <button onClick={() => navigate('/coleccionComics')}>ver colección</button>
             <button onClick={() => handleDelete(coleccion.id_coleccion)}>Borrar</button>
             <button ><Link to={`/updatecoleccion/${coleccion.id_coleccion}`}>Modificar</Link></button>
+            <button onClick={() => handleVerColeccion(coleccion.id_coleccion)}>Ver colección</button>
           </div>
         ))}
       </div>
-      <button onClick={() => handleVerColeccion(coleccion.id_coleccion)}>ver colección</button>
       <button onClick={() => navigate('/addcoleccion')}>Crear Colección</button>
       <button onClick={() => navigate('/comics')}>ir a tus comics</button>
       </div>
