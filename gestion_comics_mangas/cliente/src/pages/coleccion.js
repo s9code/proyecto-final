@@ -6,16 +6,31 @@ function Coleccion() {
 
   const [auth, setAuth] = useState(false)
   const [coleccion, setColeccion] = useState([])
+  const [coleccionComics, setColeccionComics] = useState([]);
   const [name, setName] = useState('')
   const [message, setMessage] = useState('')
   const navigate = useNavigate();
 
+  // MOSTRAR LAS COLECCIONES
   useEffect(() => {
     axios.get('http://localhost:8081/coleccion')
     .then(res => {
       setColeccion(res.data)
     })
   })
+
+  // MOSTRAR LOS COMICS ALMACENADOS EN LAS COLECCIONES
+  const handleVerColeccion = (coleccionId) => {
+    axios.get(`http://localhost:8081/coleccion/${coleccionId}/comics`)
+      .then(res => {
+        setColeccionComics(res.data);
+        // Navegar a la página que muestra los cómics asociados a la colección
+        navigate(`/coleccionComics/${coleccionId}`);
+      })
+      .catch(error => {
+        console.error('Error al obtener los cómics de la colección:', error);
+      });
+  };
  
   axios.defaults.withCredentials = true
   useEffect(() => {
@@ -61,11 +76,13 @@ function Coleccion() {
             <p>{coleccion.nombre_coleccion}</p>
             <h3>descripción</h3>
             <p>{coleccion.descrip_coleccion}</p>
+            <button onClick={() => navigate('/coleccionComics')}>ver colección</button>
             <button onClick={() => handleDelete(coleccion.id_coleccion)}>Borrar</button>
             <button ><Link to={`/updatecoleccion/${coleccion.id_coleccion}`}>Modificar</Link></button>
           </div>
         ))}
       </div>
+      <button onClick={() => handleVerColeccion(coleccion.id_coleccion)}>ver colección</button>
       <button onClick={() => navigate('/addcoleccion')}>Crear Colección</button>
       <button onClick={() => navigate('/comics')}>ir a tus comics</button>
       </div>

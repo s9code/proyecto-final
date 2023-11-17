@@ -6,17 +6,45 @@ function Comics() {
 
   const [auth, setAuth] = useState(false)
   const [comics, setComics] = useState([])
+  const [coleccion, setColeccion] = useState([])
+  const [selectedComic, setSelectedComic] = useState('')
+  const [selectedColeccion, setSelectedColeccion] = useState('');
   const [name, setName] = useState('')
   const [message, setMessage] = useState('')
   const navigate = useNavigate()
 
+  // OBTENER LA LISTA DE COMICS
   useEffect(() => {
     axios.get('http://localhost:8081/comics')
-    .then(res => {
-        setComics(res.data)
-    })
-  }, )
+    .then(response => setComics(response.data))
+      .catch(error => console.error('Error al obtener colecciones:', error));
+  }, []);
 
+  // OBTENER LA LISTA DE COLECCIONES
+  useEffect(() => {
+    axios.get('http://localhost:8081/coleccion')
+    .then(response => setColeccion(response.data))
+    .catch(error => console.error('Error al obtener colecciones:', error));
+  }, []);
+
+  const handleAsociarComicColeccion = (comicId) => {
+    if (!selectedComic || !selectedColeccion) {
+      console.error('Selecciona una coleccion al comic')
+      return
+  }
+
+
+    // ASOCIAR UN COMIC A UNA COLECCION
+    axios.post(`http://localhost:8081/comics/${selectedComic}/coleccion/${selectedColeccion}`)
+      .then(response => {
+        console.log(response.data);
+        // Manejar la respuesta según sea necesario
+      })
+      .catch(error => {
+        console.error('Error al asociar cómic a colección:', error);
+        // Manejar el error según sea necesario
+      })
+  }
 
   axios.defaults.withCredentials = true
   useEffect(() => {
@@ -53,29 +81,55 @@ function Comics() {
     <div>
       {
         auth ?
-      <div>
-        <h1>Comics</h1>
-        <button onClick={handleLogout}>Logout</button>
-      <div>
-        {comics.map((comics) => (
-          <div key={comics.id_comic}>
-            {comics.cover && <img src={comics.cover_comic} alt='' />}
-            <h3>Titulo del Comic</h3>
-            <p>{comics.titulo_comic}</p>
-            <h3>Autor del Comic</h3>
-            <p>{comics.autor_comic}</p>
-            <h3>Año de publicacion del Comic</h3>
-            <p>{comics.publicacion_comic}</p>
-            <button onClick={() => handleDelete(comics.id_comic)}>Borrar</button>
-            <button ><Link to={`/update/${comics.id_comic}`}>Modificar</Link></button>
-            <button onClick={() => navigate('/coleccion')}>Añadir a colección</button>
+      {auth ? (
+        <div>
+          <h1>Comics</h1>
+          <button onClick={handleLogout}>Logout</button>
+  
+          {/* MOSTRAR LOS COMICS */}
+          <div>
+            {comics.map((comic) => (
+              <div key={comic.id_comic}>
+                {comic.cover && <img src={comic.cover_comic} alt='' />}
+                <h3>Titulo del Comic</h3>
+                <p>{comic.titulo_comic}</p>
+                <h3>Autor del Comic</h3>
+                <p>{comic.autor_comic}</p>
+                <h3>Año de publicacion del Comic</h3>
+                <p>{comic.publicacion_comic}</p>
+                <button onClick={() => handleDelete(comic.id_comic)}>Borrar</button>
+                <button>
+                  <Link to={`/update/${comic.id_comic}`}>Modificar</Link>
+                </button>
+                <button onClick={() => setSelectedComic(comic.id_comic)}>Añadir a colección</button>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      <button onClick={() => navigate('/addcomics')}>Añade un nuevo comic</button>
-      <button onClick={() => navigate('/coleccion')}>Ir a colección</button>
-    </div>
-    :
+  
+          {/* SELECCIONADOR DE COLECCIONES */}
+          <div>
+            <label>
+              Seleccionar colección:
+              <select onChange={(e) => setSelectedColeccion(e.target.value)}>
+                <option value=''>Selecciona una colección</option>
+                {coleccion.map((coleccionItem) => (
+                  <option
+                    key={coleccionItem.id_coleccion}
+                    value={coleccionItem.id_coleccion}
+                  >
+                    {coleccionItem.nombre_coleccion}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <button onClick={handleAsociarComicColeccion}>Asociar a colección</button>
+          </div>
+          {/* --------------------------- */}
+  
+          <button onClick={() => navigate('/addcomics')}>Añade un nuevo comic</button>
+          <button onClick={() => navigate('/coleccion')}>Ir a colección</button>
+        </div>
+      ):
     <div>
       <h3>{message}</h3>
       <p><Link to='/usuario'>Ingresa con tu usuario</Link> o <Link to='/'>Crea una cuenta</Link></p>

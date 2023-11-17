@@ -55,5 +55,36 @@ router.get('/comics', (req, res) => {
     return res.json(data)
   })
 })
+// -------------------------------------------------
+// ASOCIAR COMIC A COLECCION
+router.post('/comics/:id/coleccion/:id_coleccion', (req, res) => {
+  const comicId = req.params.id
+  const coleccionId = req.params.id_coleccion
+
+  const q = 'INSERT INTO comic_coleccion (`id_comic`, `id_coleccion`) values (?, ?)'
+  db.query(q, [comicId, coleccionId], (err, data) => {
+    if (err) return res.json(err)
+    return res.json('Cómic asociado a la colección correctamente')
+  })
+})
+
+// VER COLECCION CON COMICS AGREGADOS
+router.get('/coleccion/:id_coleccion/comics', (req, res) => {
+  const coleccionId = req.params.id_coleccion
+  const q = 'SELECT comics.* FROM comics INNER JOIN comic_coleccion ON comics.id_comic = comic_coleccion.id_comic WHERE comic_coleccion.id_coleccion = ?'
+
+  db.query(q, [coleccionId], (err, data) => {
+    if (err) return res.json(err)
+    return res.json(data)
+  })
+})
+
+router.get('/coleccionComics', (req, res) => {
+  const q = 'SELECT * FROM comics'
+  db.query(q, (err, data) => {
+    if (err) return res.json(err)
+    return res.json(data)
+  })
+})
 
 export default router

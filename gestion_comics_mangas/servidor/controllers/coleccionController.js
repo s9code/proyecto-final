@@ -5,7 +5,7 @@ const router = express.Router()
 
 // CRUD
 
-// INSERTAR
+// CREAR COLECCION
 router.post('/addcoleccion', (req, res) => {
   const q = 'INSERT INTO coleccion (`nombre_coleccion`, `descrip_coleccion`) values (?)'
   const values = [

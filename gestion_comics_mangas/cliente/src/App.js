@@ -12,6 +12,7 @@ import AddComic from './pages/addComic'
 import AddColeccion from './pages/addColeccion'
 import Update from './pages/update'
 import UpdateColeccion from './pages/updateColeccion'
+import ColeccionComics from './pages/coleccionComics'
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path='/coleccion' element={<Coleccion />}></Route>
         <Route path='/update/:id' element={<Update />}></Route>
         <Route path='/updatecoleccion/:idCol' element={<UpdateColeccion />}></Route>
+        <Route path='/coleccionComics' element={<Coleccion />}></Route>
       </Routes>
     </BrowserRouter>
    
