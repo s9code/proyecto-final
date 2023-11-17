@@ -79,8 +79,6 @@ function Comics() {
 
   return (
     <div>
-      {
-        auth ?
       {auth ? (
         <div>
           <h1>Comics</h1>
