@@ -29,8 +29,8 @@ function Coleccion() {
       })
       .catch(error => {
         console.error('Error al obtener los cómics de la colección:', error);
-      });
-  };
+      })
+  }
  
   axios.defaults.withCredentials = true
   useEffect(() => {

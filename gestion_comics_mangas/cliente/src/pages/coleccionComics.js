@@ -32,8 +32,7 @@ function ColeccionComics() {
       .then(response => {
         console.log('Cómic eliminado de la colección');
         // Actualizar la lista de cómics después de eliminar
-        const updatedComics = coleccionComics.filter(comic => comic.id_comic !== comicId)
-        setColeccionComics(updatedComics);
+        window.location.reload()
       })
       .catch(error => {
         console.error('Error al eliminar el cómic de la colección:', error)
