@@ -4,9 +4,9 @@ import { useNavigate, Link } from 'react-router-dom'
 
 function Coleccion() {
 
-  const [auth, setAuth] = useState(false)
   const [coleccion, setColeccion] = useState([])
   const [coleccionComics, setColeccionComics] = useState([]);
+  const [auth, setAuth] = useState(false)
   const [name, setName] = useState('')
   const [message, setMessage] = useState('')
   const navigate = useNavigate();
