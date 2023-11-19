@@ -12,7 +12,7 @@ function ColeccionComics() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const coleccionComicId = location.pathname.split('/')[2];
+    const coleccionComicId = location.pathname.split('/')[2]
 
     // Hacer una solicitud GET para obtener los cómics de la colección
     axios.get(`http://localhost:8081/coleccion/${coleccionComicId}/comics`)
@@ -24,19 +24,14 @@ function ColeccionComics() {
       });
   }, [location.pathname]);
 
-  const eliminarComicDeColeccion = (comicId) => {
-    const coleccionComicId = location.pathname.split('/')[2];
-
-    // Realizar la petición para eliminar el cómic de la colección
-    axios.delete(`http://localhost:8081/coleccion/${coleccionComicId}/comics/${comicId}`)
-      .then(response => {
-        console.log('Cómic eliminado de la colección');
-        // Actualizar la lista de cómics después de eliminar
-        window.location.reload()
-      })
-      .catch(error => {
-        console.error('Error al eliminar el cómic de la colección:', error)
-      })
+  const handleDelete = (id) => {
+    const coleccionComicId = location.pathname.split('/')[2]
+    try {
+      axios.delete(`http://localhost:8081/coleccion/${coleccionComicId}/comics/${id}`)
+      window.location.reload()
+    }catch(err) {
+      console.log(err)
+    }
   }
 
   axios.defaults.withCredentials = true
@@ -68,10 +63,10 @@ function ColeccionComics() {
             <p>{comic.autor_comic}</p>
             <h3>Año de publicacion del Comic</h3>
             <p>{comic.publicacion_comic}</p>
-            <button onClick={() => eliminarComicDeColeccion(comic.id_comic)}>Eliminar de la colección</button>
+            <button onClick={() => handleDelete(comic.id_comic)}>Eliminar de la colección</button>
           </div>
         ))}
-        <button onClick={() => navigate('/coleccion')}>Volver a tus colecciones</button>
+        <button onClick={() => navigate('/comics')}>Volver a tus comics</button>
       </div>
     :
     <div>

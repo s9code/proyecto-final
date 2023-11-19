@@ -103,4 +103,31 @@ router.get('/coleccionComics', (req, res) => {
   })
 })
 
+// BORRAR COMICS DE COLECCION
+router.delete('/coleccion/:id_coleccion/comics/:id_comic', (req, res) => {
+  const comicId = req.params.id_comic
+  const coleccionId = req.params.id_coleccion
+
+  // Verificar si el cómic está en la colección antes de eliminarlo
+  const checkQuery = 'SELECT * FROM comic_coleccion WHERE id_comic = ? AND id_coleccion = ?'
+  db.query(checkQuery, [comicId, coleccionId], (checkErr, checkData) => {
+    if (checkErr) {
+      return res.json(checkErr)
+    }
+
+    // Si el cómic está asociado a la colección, procede a eliminarlo
+    if (checkData && checkData.length > 0) {
+      const deleteQuery = 'DELETE FROM comic_coleccion WHERE id_comic = ? AND id_coleccion = ?'
+      db.query(deleteQuery, [comicId, coleccionId], (deleteErr, deleteData) => {
+        if (deleteErr) {
+          return res.json(deleteErr)
+        }
+        return res.json('Comic eliminado de la colección correctamente')
+      })
+    } else {
+      return res.json('El cómic no está asociado a esta colección')
+    }
+  })
+})
+
 export default router

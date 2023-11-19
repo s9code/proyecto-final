@@ -21,8 +21,16 @@ router.post('/addcoleccion', (req, res) => {
 // BORRAR
 router.delete('/coleccion/:idCol', (req, res) => {
   const coleccionId = req.params.idCol
-  const q = 'DELETE FROM coleccion WHERE id_coleccion = ?'
-  db.query(q, [coleccionId], (err, data) => {
+
+  const deleteComicAsociado = 'DELETE FROM comic_coleccion WHERE id_coleccion = ?'
+  db.query(deleteComicAsociado, [coleccionId], (comicErr, comicData) => {
+    if (comicErr) {
+      return res.json(comicErr)
+    }
+  })
+
+  const deleteColeccion = 'DELETE FROM coleccion WHERE id_coleccion = ?'
+  db.query(deleteColeccion, [coleccionId], (err, data) => {
     if (err) return res.json(err)
     return res.json('Colección borrada correctamente')
   })
