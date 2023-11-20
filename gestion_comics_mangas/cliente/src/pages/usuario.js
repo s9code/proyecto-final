@@ -34,6 +34,7 @@ function Usuario() {
     .then(res => {
       if(res.data.Status === 'Success') {
         navigate('/coleccion')
+        window.location.reload()
       }else {
         setErrorMessage(res.data.Message)
       }
