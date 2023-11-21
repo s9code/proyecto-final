@@ -46,13 +46,6 @@ function Coleccion() {
     })
   }, [])
 
-  const handleLogout = () => {
-    axios.get('http://localhost:8081/usuario/logout')
-    .then(res => {
-        navigate('/usuario')
-    }).catch(err => console.log(err))
-  }
-
   const handleDelete = (id) => {
     try {
       axios.delete(`http://localhost:8081/coleccion/${id}`)
@@ -68,7 +61,6 @@ function Coleccion() {
         auth ?
       <div>
         <h1>Tus colecciones {name}</h1>
-        <button onClick={handleLogout}>Logout</button>
         <div>
         {coleccion.map((coleccion) => (
           <div key={coleccion.id_coleccion}>

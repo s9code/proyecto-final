@@ -1,3 +1,4 @@
+import React from 'react'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate, Link } from 'react-router-dom'
@@ -52,7 +53,6 @@ function Usuario() {
 
      </div>
      :
-     
      <div>
      <h2>Inicio de Sesion</h2>
      <form onSubmit={handleSubmit}>

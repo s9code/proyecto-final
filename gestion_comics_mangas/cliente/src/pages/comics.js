@@ -82,8 +82,6 @@ function Comics() {
       {auth ? (
         <div>
           <h1>Comics</h1>
-          <button onClick={handleLogout}>Logout</button>
-  
           {/* MOSTRAR LOS COMICS */}
           <div>
             {comics.map((comic) => (

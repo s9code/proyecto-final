@@ -1,0 +1,68 @@
+body {
+  background-color: rgb(219, 169, 221);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.contenedor-general {
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.contenedor-texto {
+  text-align: center;
+  color: white;
+  font-weight: 500;
+  font-size: 16px;
+}
+.contenedor-titulo {
+  color: hsl(248, 32%, 49%);
+  border-radius:10px;
+  padding: 20px 5px 20px 5px;
+  font-weight: 600;
+  font-size: 30px;
+}
+.contenedor-registro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  background-color:white;
+  gap: 20px;
+  border-radius: 10px;
+  padding: 25px;
+}
+.contenedor-registro_input.input-error {
+  border: 1px solid hsl(0, 100%, 74%);
+}
+.error-message {
+  display: block;
+  color: hsl(0, 100%, 74%);
+  margin-top: 5px;
+}
+.contenedor-registro_campo {
+  padding-bottom: 15px;
+}
+.contenedor-registro_input {
+  border: 1px solid rgb(172, 172, 172);
+  border-radius: 5px;
+  padding: 15px 0 15px 10px;
+  width: 300px;
+  font-size: 16px;
+}
+.registro_usuario {
+  background-color: hsl(248, 32%, 49%);
+  color: aliceblue;
+  border-radius:5px;
+  padding: 15px;
+  width: 310px;
+  font-weight: 500;
+  font-size: 16px;
+}
+.registro_cuenta{
+  color: hsl(0, 100%, 74%);
+  font-weight: 500;
+}

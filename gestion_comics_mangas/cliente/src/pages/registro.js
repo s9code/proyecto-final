@@ -1,3 +1,4 @@
+import '../estilos/registro.css'
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from "react-router-dom"
@@ -29,11 +30,12 @@ function Registro() {
     if(values.email === '') {
       validationErrors.email = 'Email requerido'
     }else if (!/\S+@\S+\.\S+/.test(values.email)) {
-      validationErrors.email = 'El email no es valido'
+      validationErrors.email = 'Formato de email inválido'
     }
     if(values.password === '') {
       validationErrors.password = 'Contraseña requerida'
     }
+
 
     setErrors(validationErrors)
 
@@ -53,42 +55,56 @@ function Registro() {
   }
 
 return (
-  <div>
-    <h2>Registrate</h2>
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor='name'>Nombre de Usuario:</label>
-        <input type='text'
-        placeholder='Introduce el nombre'
-        name='name'
-        onChange={handleChange}>
-        </input>
-        {errors.name && <span>{errors.name}</span>}
-      </div>
-      <div>
-        <label htmlFor='email'>Email:</label>
-        <input 
-        type='email' 
-        placeholder='Introduce el Email'
-        name='email'
-        onChange={handleChange}>
-        </input>
-        {errors.email && <span>{errors.email}</span>}
-      </div>
-      <div>
-        <label htmlFor='password'>Contraseña:</label>
+  <div className='contenedor-general'>
+    <div className='contenedor-texto'>
+      <p>Crea y gestiona tu colección de Comics y Mangas</p>
+    </div>
+    <div className='contenedor-titulo'>
+      <p>Regístrate</p>
+    </div>
+    <div className='contenedor-registro'>
+    <form className='contenedor-registro_form' onSubmit={handleSubmit}>
+      <div className='contenedor-registro_campo'>
+        <label htmlFor='name'></label>
         <input
-        type='password'
-        placeholder='Introduce la Contraseña'
-        name='password'
-        onChange={handleChange}>
-        </input>
-        {errors.password && <span>{errors.password}</span>}
+          className={`contenedor-registro_input ${errors.name ? 'input-error' : ''}`}
+          type='text'
+          placeholder='Introduce el nombre'
+          name='name'
+          value={values.name}
+          onChange={handleChange}
+        />
+        {errors.name && <span className='error-message'>{errors.name}</span>}
       </div>
-        <button>Crear usuario</button>
-      </form>
-      <p>¿Ya tienes una cuenta?</p>
-      <button onClick={() => navigate('/usuario')}>Ingresar</button>
+      <div className='contenedor-registro_campo'>
+        <label htmlFor='email'></label>
+        <input
+          className={`contenedor-registro_input ${errors.email ? 'input-error' : ''}`}
+          type='email'
+          placeholder='Introduce el Email'
+          name='email'
+          value={values.email}
+          onChange={handleChange}
+        />
+        {errors.email && <span className='error-message'>{errors.email}</span>}
+      </div>
+      <div className='contenedor-registro_campo'>
+        <label htmlFor='password'></label>
+        <input
+          className={`contenedor-registro_input ${errors.password ? 'input-error' : ''}`}
+          type='password'
+          placeholder='Introduce la Contraseña'
+          name='password'
+          value={values.password}
+          onChange={handleChange}
+        />
+        {errors.password && <span className='error-message'>{errors.password}</span>}
+      </div>
+      <button className='registro_usuario'>Crear usuario</button>
+    </form>
+      <p className='registro_cuenta'>¿Ya tienes una cuenta?</p>
+      <button className='registro_usuario' onClick={() => navigate('/usuario')}>Ingresar</button>
+      </div>
   </div>
   )
 }

@@ -1,14 +1,15 @@
 .navbar {
-    background-color: red;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+  background-color: red;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
 }
 
 .navbar-list {
-    display: flex;
-    flex-direction: row;
-    list-style: none;
-    gap: 20px;
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  gap: 20px;
 }
