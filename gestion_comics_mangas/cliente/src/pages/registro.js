@@ -55,11 +55,11 @@ function Registro() {
   }
 
 return (
-  <div className='contenedor-general'>
-    <div className='contenedor-texto'>
+  <div className='contenedor-general_registro'>
+    <div className='contenedor-texto_registro'>
       <p>Crea y gestiona tu colección de Comics y Mangas</p>
     </div>
-    <div className='contenedor-titulo'>
+    <div className='contenedor-titulo_registro'>
       <p>Regístrate</p>
     </div>
     <div className='contenedor-registro'>

@@ -8,6 +8,7 @@ function Navbar() {
   const [auth, setAuth] = useState(false)
   const [name, setName] = useState('')
   const [message, setMessage] = useState('')
+  const [menuOpen, setMenuOpen] = useState(false)
   const navigate = useNavigate();
 
   axios.defaults.withCredentials = true
@@ -32,26 +33,39 @@ function Navbar() {
     }).catch(err => console.log(err))
   }
 
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen)
+  }
+
+  const closeMenu = () => {
+    setMenuOpen(false)
+  }
+
   return (
     <div>
       {
         auth ?
-        <nav className='navbar'>
+        <div>
+        <div className='hamburger-menu' onClick={toggleMenu}>
+          <div className='hamburger-icon'></div>
+        </div>
+        <nav className={`navbar ${menuOpen ? 'active' : ''}`}>
         <div className='navbar-name'>
           <h1>Biblioteca de Comics</h1>
         </div>
         <ul className='navbar-list'>
           <li>
-            <Link to='/coleccion'>Colecciones</Link>
+            <Link to='/coleccion' onClick={closeMenu}>Colecciones</Link>
           </li>
           <li>
-            <Link to='/comics'>Comics</Link>
+            <Link to='/comics' onClick={closeMenu}>Comics</Link>
           </li>
           <li>
             <Link onClick={handleLogout}>Desconectar</Link>
           </li>
         </ul>
       </nav>
+      </div>
       
     :
     <div>

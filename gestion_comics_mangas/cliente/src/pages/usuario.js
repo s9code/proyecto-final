@@ -1,3 +1,4 @@
+import '../estilos/usuario.css'
 import React from 'react'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
@@ -43,46 +44,51 @@ function Usuario() {
     .catch(err => console.log(err))
   }
 
-  return (
-    <div>
+return (
+  <div>
     {
-      auth ?
-      <div>
-       <h3>{message}</h3>
-       <Link to='/comics'>Usuario ya registrado</Link>
-
-     </div>
-     :
-     <div>
-     <h2>Inicio de Sesion</h2>
-     <form onSubmit={handleSubmit}>
-       <div>
-         <label htmlFor='email'>Email:</label>
-         <input 
-         type='email' 
-         placeholder='Introduce el Email'
-         value={email}
-         autoComplete='off'
-         onChange={e => setEmail(e.target.value)}>
-         </input>
-       </div>
-       <div>
-         <label htmlFor='password'>Contraseña:</label>
-         <input 
-         type='password' 
-         placeholder='Introduce la Contraseña'
-         value={password}
-         autoComplete='off'
-         onChange={e => setPassword(e.target.value)}>
-         </input>
-       </div>
-       <button>Acceder</button>
-       <button onClick={() => navigate('/')}>Regresar</button>
-       {<span>{errorMessage}</span>}
-     </form>
-   </div>
+    auth ?
+    <div>
+      <h3>{message}</h3>
+      <Link to='/comics'>Usuario ya registrado</Link>
+    </div>
+    :
+    <div className='contenedor-general_usuario'>
+      <div className='contenedor-titulo_usuario'>
+        <p>Inicio de sesión</p>
+      </div>
+      <div className='contenedor-usuario'>
+        <form className='contenedor-usuario_form' onSubmit={handleSubmit}>
+          <div className='contenedor-usuario_campo'>
+            <label htmlFor='email'></label>
+            <input
+              className={`contenedor-usuario_input ${errorMessage && 'input-error'}`}
+              type='email'
+              placeholder='Introduce el Email'
+              value={email}
+              autoComplete='off'
+              onChange={(e) => setEmail(e.target.value)}
+              />
+          </div>
+          <div className='contenedor-usuario_campo'>
+            <label htmlFor='password'></label>
+            <input
+              className={`contenedor-usuario_input ${errorMessage && 'input-error'}`}
+              type='password'
+              placeholder='Introduce la Contraseña'
+              value={password}
+              autoComplete='off'
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            {errorMessage && <span className='error-message'>{errorMessage}</span>}
+          </div>
+          <button className='registro_sesion'>Acceder</button>
+        </form>
+        <button className='regresar_sesion'onClick={() => navigate('/')}>Regresar</button>
+      </div>
+    </div>
      }
-</div>
+  </div>
   )
 }
 
