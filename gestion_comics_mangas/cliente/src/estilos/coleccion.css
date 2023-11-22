@@ -1,0 +1,32 @@
+.contenedor-general_coleccion {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.titulo_coleccion {
+  color: hsl(248, 32%, 49%);
+  margin-bottom: 20px;
+}
+.boton_coleccion {
+  background-color: hsl(248, 32%, 49%);
+  color: aliceblue;
+  border-radius:5px;
+  padding: 15px;
+  width: 310px;
+  font-weight: 500;
+  font-size: 16px;
+  margin-bottom: 40px;
+}
+.contenedor-coleccion {
+  background-color: white;
+  padding: 15px;
+  border-radius:5px;
+}
+.coleccion_comics {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

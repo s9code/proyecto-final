@@ -45,7 +45,7 @@ function Navbar() {
     <div>
       {
         auth ?
-        <div>
+        <div className='contenedor-general_navbar'>
         <div className='hamburger-menu' onClick={toggleMenu}>
           <div className='hamburger-icon'></div>
         </div>

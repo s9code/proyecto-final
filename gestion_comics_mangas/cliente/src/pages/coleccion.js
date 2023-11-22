@@ -1,3 +1,4 @@
+import '../estilos/coleccion.css'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate, Link } from 'react-router-dom'
@@ -59,23 +60,22 @@ function Coleccion() {
     <div>
       {
         auth ?
-      <div>
-        <h1>Tus colecciones {name}</h1>
-        <div>
-        {coleccion.map((coleccion) => (
-          <div key={coleccion.id_coleccion}>
-            <h3>Titulo de la Colección</h3>
-            <p>{coleccion.nombre_coleccion}</p>
-            <h3>descripción</h3>
-            <p>{coleccion.descrip_coleccion}</p>
-            <button onClick={() => handleDelete(coleccion.id_coleccion)}>Borrar</button>
-            <button ><Link to={`/updatecoleccion/${coleccion.id_coleccion}`}>Modificar</Link></button>
-            <button onClick={() => handleVerColeccion(coleccion.id_coleccion)}>Ver colección</button>
-          </div>
-        ))}
-      </div>
-      <button onClick={() => navigate('/addcoleccion')}>Crear Colección</button>
-      <button onClick={() => navigate('/comics')}>ir a tus comics</button>
+      <div className='contenedor-general_coleccion'>
+        <h1 className='titulo_coleccion'>Tus colecciones</h1>
+        <button className='boton_coleccion' onClick={() => navigate('/addcoleccion')}>Crear Colección</button>
+        <div className='contenedor-coleccion'>
+          {coleccion.map((coleccion) => (
+            <div className='coleccion_comics' key={coleccion.id_coleccion}>
+              <h3>Titulo de la Colección</h3>
+              <p>{coleccion.nombre_coleccion}</p>
+              <h3>descripción</h3>
+              <p>{coleccion.descrip_coleccion}</p>
+              <button onClick={() => handleDelete(coleccion.id_coleccion)}>Borrar</button>
+              <button ><Link to={`/updatecoleccion/${coleccion.id_coleccion}`}>Modificar</Link></button>
+              <button onClick={() => handleVerColeccion(coleccion.id_coleccion)}>Ver colección</button>
+            </div>
+          ))}
+        </div>
       </div>
     :
     <div>
