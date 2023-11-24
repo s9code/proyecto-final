@@ -98,8 +98,8 @@ function Comics() {
                 <button className='boton-comic' onClick={() => handleDelete(comic.id_comic)}>Borrar</button>
                 <button className='boton-comic' onClick={() => navigate (`/update/${comic.id_comic}`)}>Actualizar</button>
                 </div>
-                <div className='boton-and'>
-                <button className='boton-comic' onClick={() => setSelectedComic(comic.id_comic)}>Añadir a colección</button>
+                <div>
+                <button className='boton-and' onClick={() => setSelectedComic(comic.id_comic)}>Añadir a colección</button>
                 </div>
               </div>
             </div>

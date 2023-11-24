@@ -7,7 +7,7 @@
 }
 .container-comic_imagen {
     padding: 35px;
-    border: 1px solid white;
+    background-color: hsla(248, 32%, 49%, 0.383);
 }
 .container-comic_texto {
     display: flex;
@@ -19,15 +19,21 @@
     background-color: white;
     color: hsl(248, 32%, 49%);
 }
-.container-comic_boton {
+
+.boton-and{
+    background-color: hsl(0, 100%, 74%);
+    border: 1px solid white;
+    color: white;
+    padding: 5px;
     width: 195px;
-    background-color: red;
 }
-.boton-crud {
+.boton-comic {
+    background: none;
+    color: white;
     border: 1px solid white;
-}
-.boton-and {
-    border: 1px solid white;
+    border-radius:2px;
+    padding: 5px;
+    width: 98px;
 }
 .titulo-comic {
     color: hsl(248, 32%, 49%);
@@ -51,11 +57,3 @@
     height: 190px;
     object-fit: cover;
 }
-.boton-comic {
-    background: none;
-    color: white;
-    border-radius:2px;
-    width: 60px;
-    padding: 5px;
-    row-gap: 5px;
-  }
