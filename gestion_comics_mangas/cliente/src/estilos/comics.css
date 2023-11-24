@@ -5,18 +5,39 @@
     justify-content: center;
     margin-top: 50px;
 }
+.container-comic_imagen {
+    padding: 35px;
+    border: 1px solid white;
+}
 .container-comic_texto {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 195px;
+    border: 1px solid white;
+    background-color: white;
+    color: hsl(248, 32%, 49%);
+}
+.container-comic_boton {
+    width: 195px;
+    background-color: red;
+}
+.boton-crud {
+    border: 1px solid white;
+}
+.boton-and {
+    border: 1px solid white;
+}
+.titulo-comic {
+    color: hsl(248, 32%, 49%);
 }
 .comics-wrap {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 50px;
+    grid-template-columns: (1, 1fr);
+    grid-gap: 40px;
     grid-auto-rows: (100px, auto);
-    margin-top: 40px;
+    margin-top: 20px;
     margin-bottom: 40px;
 }
 .comic-card {

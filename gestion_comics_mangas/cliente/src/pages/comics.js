@@ -74,11 +74,12 @@ function Comics() {
     <div>
       {auth ? (
         <div className='container-comics'>
-          <h1>Comics</h1>
+          <h1 className='titulo-comic'>Comics</h1>
           {/* MOSTRAR LOS COMICS */}
           <div className='comics-wrap'>
           {comics.map((comic) => (
-              <div key={comic.id_comic} className="comic-card">
+            <div key={comic.id_comic} className="comic-card">
+              <div className='container-comic_imagen'>
                 {comic.cover_comic && (
                   <img
                     src={`http://localhost:8081/${comic.cover_comic}`}
@@ -86,17 +87,22 @@ function Comics() {
                     className='comic-imagen'>
                   </img>
                 )}
+                </div>
                 <div className='container-comic_texto'>
                   <p className='comic-texto'>{comic.titulo_comic}</p>
                   <p className='comic-texto'>{comic.autor_comic}</p>
                   <p className='comic-texto'>{comic.publicacion_comic}</p>
                 </div>
-              <div>
-                  <button className='boton-comic' onClick={() => handleDelete(comic.id_comic)}>Borrar</button>
-                  <button className='boton-comic' onClick={() => navigate (`/update/${comic.id_comic}`)}>Actualizar</button>
+              <div className='container-comic_boton'>
+                <div className='boton-crud'>
+                <button className='boton-comic' onClick={() => handleDelete(comic.id_comic)}>Borrar</button>
+                <button className='boton-comic' onClick={() => navigate (`/update/${comic.id_comic}`)}>Actualizar</button>
                 </div>
+                <div className='boton-and'>
                 <button className='boton-comic' onClick={() => setSelectedComic(comic.id_comic)}>Añadir a colección</button>
+                </div>
               </div>
+            </div>
             ))}
           </div>
   
