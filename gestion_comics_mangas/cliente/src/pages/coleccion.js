@@ -66,13 +66,14 @@ function Coleccion() {
         <div className='contenedor-coleccion'>
           {coleccion.map((coleccion) => (
             <div className='coleccion_comics' key={coleccion.id_coleccion}>
-              <h3>Titulo de la Colección</h3>
-              <p>{coleccion.nombre_coleccion}</p>
-              <h3>descripción</h3>
+              <p className='coleccion_nombre'>{coleccion.nombre_coleccion}</p>
+              <p>descripción</p>
               <p>{coleccion.descrip_coleccion}</p>
-              <button onClick={() => handleDelete(coleccion.id_coleccion)}>Borrar</button>
-              <button ><Link to={`/updatecoleccion/${coleccion.id_coleccion}`}>Modificar</Link></button>
-              <button onClick={() => handleVerColeccion(coleccion.id_coleccion)}>Ver colección</button>
+              <div className='coleccion_botones'>
+                <button className='boton-coleccion_comic' onClick={() => handleDelete(coleccion.id_coleccion)}>Borrar</button>
+                <button className='boton-coleccion_comic' onClick={() => navigate (`/updatecoleccion/${coleccion.id_coleccion}`)}>Actualizar</button>
+                <button className='boton-coleccion_comic' onClick={() => handleVerColeccion(coleccion.id_coleccion)}>Ver colección</button>
+              </div>
             </div>
           ))}
         </div>

@@ -33,7 +33,7 @@
 }
 .registro_sesion {
   background-color: hsl(248, 32%, 49%);
-  color: aliceblue;
+  color: white;
   border-radius:5px;
   padding: 15px;
   width: 310px;
@@ -43,7 +43,7 @@
 }
 .regresar_sesion {
   background-color: hsl(248, 32%, 49%);
-  color: aliceblue;
+  color: white;
   border-radius:5px;
   padding: 15px;
   width: 310px;

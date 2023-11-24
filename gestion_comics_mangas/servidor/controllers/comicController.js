@@ -1,22 +1,39 @@
 import express from 'express'
+import multer from 'multer'
+import path from 'path'
 import db from '../bd.js'
 
 const router = express.Router()
 
-// CRUD
+const storage = multer.diskStorage({
+  destination: 'uploads/',
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+    const ext = path.extname(file.originalname)
+    cb(null, file.fieldname + '-' + uniqueSuffix + ext)
+  }
+})
+
+const upload = multer({ storage })
 
 // INSERTAR
-router.post('/addcomics', (req, res) => {
-  const q = 'INSERT INTO comics (`titulo_comic`, `autor_comic`, `cover_comic`, `publicacion_comic`) values (?)'
+router.post('/addcomics', upload.single('cover'), (req, res) => {
+  const q = 'INSERT INTO comics (titulo_comic, autor_comic, cover_comic, publicacion_comic) VALUES (?, ?, ?, ?)'
+  const coverPath = req.file.path
+
   const values = [
     req.body.titulo,
     req.body.autor,
-    req.body.cover,
+    coverPath,
     req.body.publicacion
   ]
-  db.query(q, [values], (err, data) => {
-    if (err) return res.json(err)
-    return res.json('Comic agregado correctamente')
+
+  db.query(q, values, (err, data) => {
+    if (err) {
+      console.error('Error al insertar el cómic:', err)
+      return res.status(500).json({ error: 'Error al agregar el cómic' })
+    }
+    return res.json('Cómic agregado correctamente')
   })
 })
 // -------------------------------------------------

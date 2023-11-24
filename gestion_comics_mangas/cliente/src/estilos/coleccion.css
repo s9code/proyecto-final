@@ -30,3 +30,22 @@
   align-items: center;
   justify-content: center;
 }
+.coleccion_nombre {
+  color: hsl(0, 100%, 74%);
+  font-weight: 600;
+}
+.coleccion_botones {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  gap: 5px;
+}
+.boton-coleccion_comic {
+  background-color: hsl(248, 32%, 49%);
+  color: white;
+  border-radius:2px;
+  width: 100px;
+  padding: 5px;
+  row-gap: 5px;
+}
+

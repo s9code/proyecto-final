@@ -1,11 +1,17 @@
 import express from 'express'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
+import path from 'path'
 // IMPORTAR CONTROLADORES
 import comicsController from './controllers/comicController.js'
 import userController from './controllers/userController.js'
 import signupController from './controllers/signupController.js'
 import coleccionController from './controllers/coleccionController.js'
+import { fileURLToPath } from 'url'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
 // -------------------------------------------------
 // ACCESO A LA BASE DE DATOS
 const port = 8081
@@ -26,6 +32,8 @@ app.use(comicsController)
 app.use(userController)
 app.use(signupController)
 app.use(coleccionController)
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
+
 // -------------------------------------------------
 // RUTA DE INICIO AL SERVIDOR
 app.get('/', (req, res) => {

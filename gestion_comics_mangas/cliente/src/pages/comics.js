@@ -1,3 +1,4 @@
+import '../estilos/comics.css'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate, Link } from 'react-router-dom'
@@ -60,14 +61,6 @@ function Comics() {
     })
   }, [])
 
-
-  const handleLogout = () => {
-    axios.get('http://localhost:8081/usuario/logout')
-    .then(res => {
-        navigate('/usuario')
-    }).catch(err => console.log(err))
-  }
-
   const handleDelete = (id) => {
     try {
       axios.delete(`http://localhost:8081/comics/${id}`)
@@ -80,24 +73,29 @@ function Comics() {
   return (
     <div>
       {auth ? (
-        <div>
+        <div className='container-comics'>
           <h1>Comics</h1>
           {/* MOSTRAR LOS COMICS */}
-          <div>
-            {comics.map((comic) => (
-              <div key={comic.id_comic}>
-                {comic.cover && <img src={comic.cover_comic} alt='' />}
-                <h3>Titulo del Comic</h3>
-                <p>{comic.titulo_comic}</p>
-                <h3>Autor del Comic</h3>
-                <p>{comic.autor_comic}</p>
-                <h3>Año de publicacion del Comic</h3>
-                <p>{comic.publicacion_comic}</p>
-                <button onClick={() => handleDelete(comic.id_comic)}>Borrar</button>
-                <button>
-                  <Link to={`/update/${comic.id_comic}`}>Modificar</Link>
-                </button>
-                <button onClick={() => setSelectedComic(comic.id_comic)}>Añadir a colección</button>
+          <div className='comics-wrap'>
+          {comics.map((comic) => (
+              <div key={comic.id_comic} className="comic-card">
+                {comic.cover_comic && (
+                  <img
+                    src={`http://localhost:8081/${comic.cover_comic}`}
+                    alt='Cover'
+                    className='comic-imagen'>
+                  </img>
+                )}
+                <div className='container-comic_texto'>
+                  <p className='comic-texto'>{comic.titulo_comic}</p>
+                  <p className='comic-texto'>{comic.autor_comic}</p>
+                  <p className='comic-texto'>{comic.publicacion_comic}</p>
+                </div>
+              <div>
+                  <button className='boton-comic' onClick={() => handleDelete(comic.id_comic)}>Borrar</button>
+                  <button className='boton-comic' onClick={() => navigate (`/update/${comic.id_comic}`)}>Actualizar</button>
+                </div>
+                <button className='boton-comic' onClick={() => setSelectedComic(comic.id_comic)}>Añadir a colección</button>
               </div>
             ))}
           </div>
