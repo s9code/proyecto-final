@@ -7,7 +7,7 @@ function Update() {
   const [comic, setComic] = useState({
     titulo: '',
     autor: '',
-    cover: '',
+    cover: null,
     publicacion: '',
   })
     
@@ -21,9 +21,12 @@ function Update() {
   const comicId = location.pathname.split('/')[2]
   
   const handleChange = (e) => {
-    const {name , value } = e.target;
-    setComic({...comic, [name]: value})
+    setComic({ ...comic, [e.target.name]: e.target.value })
   }
+
+  const handleFileChange = (e) => {
+    setComic({ ...comic, cover: e.target.files[0] });
+  };
   
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,7 +39,7 @@ function Update() {
     if(comic.autor === '') {
       validationErrors.autor = 'Nombre del autor requerido'
     }
-    if(comic.cover === '') {
+    if(!comic.cover) {
       validationErrors.cover = 'imagen requerida'
     }
     if(comic.publicacion === '') {
@@ -46,19 +49,26 @@ function Update() {
     setErrors(validationErrors)
   
     if(Object.keys(validationErrors).length === 0) {
-      axios.put(`http://localhost:8081/comics/${comicId}`, comic)
+      const formData = new FormData()
+      formData.append('titulo', comic.titulo)
+      formData.append('autor', comic.autor)
+      formData.append('cover', comic.cover)
+      formData.append('publicacion', comic.publicacion)
+      axios.put(`http://localhost:8081/comics/${comicId}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
       .then(() => {
         navigate('/comics')
       })
       .catch((error) => {
-        console.error('Error en la peticion', error)
+        console.error('Error en la petición', error)
       })
     }else {
-      console.log('Datos de comic incorrectos')
+      console.log('Datos de có incorrectos')
     }
-  
   }
-
   axios.defaults.withCredentials = true
   useEffect(() => {
     axios.get('http://localhost:8081')
@@ -66,12 +76,15 @@ function Update() {
       if (res.data.Status === 'Success') {
         setAuth(true)
         setName(res.data.name)
-      }else {
-        setAuth(false)
-        setMessage(res.data.Message)
-      }
-    })
-  }, [])
+      } else {
+          setAuth(false);
+          setMessage(res.data.Message);
+        }
+      })
+      .catch((error) => {
+        console.error('Error en la petición', error);
+      });
+  }, []);
 
 return (
   <div>
@@ -79,7 +92,7 @@ return (
     auth ?
     <div>
       <h2>Actualizar comic</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} encType='multipart/form-data'>
         <div>
           <label htmlFor='titulo'>Actualizar Titulo:</label>
           <input type='text'
@@ -102,10 +115,10 @@ return (
         <div>
           <label htmlFor='cover'>Actualizar el cover:</label>
           <input
-          type='text'
+          type='file'
           placeholder='Introduce el cover'
           name='cover'
-          onChange={handleChange}>
+          onChange={handleFileChange}>
           </input>
           {errors.cover && <span>{errors.cover}</span>}
         </div>

@@ -74,7 +74,7 @@ function Comics() {
     <div>
       {auth ? (
         <div className='container-comics'>
-          <h1 className='titulo-comic'>Comics</h1>
+          <h1 className='titulo-comic'>Todos tus Comics</h1>
           {/* MOSTRAR LOS COMICS */}
           <div className='comics-wrap'>
           {comics.map((comic) => (
@@ -90,8 +90,8 @@ function Comics() {
                 </div>
                 <div className='container-comic_texto'>
                   <p className='comic-texto'>{comic.titulo_comic}</p>
-                  <p className='comic-texto'>{comic.autor_comic}</p>
-                  <p className='comic-texto'>{comic.publicacion_comic}</p>
+                  <p className='comic-texto texto_autor'>{comic.autor_comic}</p>
+                  <p className='comic-texto texto_publi'>{comic.publicacion_comic}</p>
                 </div>
               <div className='container-comic_boton'>
                 <div className='boton-crud'>

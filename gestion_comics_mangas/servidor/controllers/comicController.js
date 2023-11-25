@@ -48,14 +48,14 @@ router.delete('/comics/:id', (req, res) => {
 })
 // -------------------------------------------------
 // ACTUALIZAR
-router.put('/comics/:id', (req, res) => {
+router.put('/comics/:id', upload.single('cover'), (req, res) => {
   const comicId = req.params.id
   const q = 'UPDATE comics SET titulo_comic = ?, autor_comic = ?, cover_comic = ?, publicacion_comic = ? WHERE id_comic = ?'
-
+  const coverPath = req.file.path
   const values = [
     req.body.titulo,
     req.body.autor,
-    req.body.cover,
+    coverPath,
     req.body.publicacion
   ]
   db.query(q, [...values, comicId], (err, data) => {

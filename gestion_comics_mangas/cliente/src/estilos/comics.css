@@ -17,7 +17,7 @@
     width: 195px;
     border: 1px solid white;
     background-color: white;
-    color: hsl(248, 32%, 49%);
+    color: hsl(0, 0%, 0%);
 }
 
 .boton-and{
@@ -56,4 +56,10 @@
     max-width: 125px;
     height: 190px;
     object-fit: cover;
+}
+.texto_publi {
+    font-size: 10px;
+}
+.texto_autor {
+    font-size: 12px;
 }

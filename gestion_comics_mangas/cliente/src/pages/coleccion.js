@@ -62,12 +62,11 @@ function Coleccion() {
         auth ?
       <div className='contenedor-general_coleccion'>
         <h1 className='titulo_coleccion'>Tus colecciones</h1>
-        <button className='boton_coleccion' onClick={() => navigate('/addcoleccion')}>Crear Colección</button>
+        <button className='boton_coleccion' onClick={() => navigate('/addcoleccion')}>Crear nueva colección</button>
         <div className='contenedor-coleccion'>
           {coleccion.map((coleccion) => (
             <div className='coleccion_comics' key={coleccion.id_coleccion}>
               <p className='coleccion_nombre'>{coleccion.nombre_coleccion}</p>
-              <p>descripción</p>
               <p>{coleccion.descrip_coleccion}</p>
               <div className='coleccion_botones'>
                 <button className='boton-coleccion_comic' onClick={() => handleDelete(coleccion.id_coleccion)}>Borrar</button>

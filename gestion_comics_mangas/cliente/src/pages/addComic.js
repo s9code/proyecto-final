@@ -8,16 +8,17 @@ function AddComic() {
     autor: '',
     cover: null,
     publicacion: '',
-  });
+  })
 
   const [auth, setAuth] = useState(false);
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
+ 
 
   const handleChange = (e) => {
-    setComic({ ...comic, [e.target.name]: e.target.value });
+    setComic({ ...comic, [e.target.name]: e.target.value })
   };
 
   const handleFileChange = (e) => {
@@ -27,7 +28,8 @@ function AddComic() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const validationErrors = {};
+    const validationErrors = {}
+
     if (comic.titulo === '') {
       validationErrors.titulo = 'Nombre del comic requerido';
     }
@@ -44,11 +46,11 @@ function AddComic() {
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length === 0) {
-      const formData = new FormData();
-      formData.append('titulo', comic.titulo);
-      formData.append('autor', comic.autor);
-      formData.append('cover', comic.cover);
-      formData.append('publicacion', comic.publicacion);
+      const formData = new FormData()
+      formData.append('titulo', comic.titulo)
+      formData.append('autor', comic.autor)
+      formData.append('cover', comic.cover)
+      formData.append('publicacion', comic.publicacion)
 
       axios.post('http://localhost:8081/addcomics', formData, {
         headers: {
@@ -64,8 +66,8 @@ function AddComic() {
     } else {
       console.log('Datos del cómic incorrectos');
     }
-  };
-
+  }
+  axios.defaults.withCredentials = true
   useEffect(() => {
     axios.get('http://localhost:8081')
       .then(res => {
@@ -90,12 +92,12 @@ function AddComic() {
           <form onSubmit={handleSubmit} encType='multipart/form-data'>
             <div>
               <label htmlFor='titulo'>Titulo:</label>
-              <input type='text' name='titulo' onChange={handleChange} />
+              <input type='text' name='titulo' placeholder='Introduce el titulo' onChange={handleChange} />
               {errors.titulo && <span>{errors.titulo}</span>}
             </div>
             <div>
               <label htmlFor='autor'>Autor:</label>
-              <input type='text' name='autor' onChange={handleChange} />
+              <input type='text' name='autor' placeholder='Introduce el autor' onChange={handleChange} />
               {errors.autor && <span>{errors.autor}</span>}
             </div>
             <div>
@@ -105,7 +107,7 @@ function AddComic() {
             </div>
             <div>
               <label htmlFor='publicacion'>Publicacion:</label>
-              <input type='number' name='publicacion' onChange={handleChange} />
+              <input type='number' name='publicacion' placeholder='Introduce el año' onChange={handleChange} />
               {errors.publicacion && <span>{errors.publicacion}</span>}
             </div>
             <button type='submit'>Crear comic</button>
