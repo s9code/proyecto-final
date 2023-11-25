@@ -26,7 +26,6 @@
 
 .navbar-list li a {
   color: hsl(248, 32%, 49%);
-  /*text-decoration: none;*/
 }
 
 .navbar-list li a:hover {

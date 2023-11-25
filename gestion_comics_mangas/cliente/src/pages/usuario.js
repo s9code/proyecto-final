@@ -1,4 +1,5 @@
 import '../estilos/usuario.css'
+import '../estilos/componentes.css'
 import React from 'react'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
@@ -68,7 +69,7 @@ return (
               value={email}
               autoComplete='off'
               onChange={(e) => setEmail(e.target.value)}
-              />
+            />
           </div>
           <div className='contenedor-usuario_campo'>
             <label htmlFor='password'></label>
@@ -82,9 +83,9 @@ return (
             />
             {errorMessage && <span className='error-message'>{errorMessage}</span>}
           </div>
-          <button className='registro_sesion'>Acceder</button>
+          <button className='registro_sesion btn'>Acceder</button>
         </form>
-        <button className='regresar_sesion'onClick={() => navigate('/')}>Regresar</button>
+        <button className='regresar_sesion btn'onClick={() => navigate('/')}>Regresar</button>
       </div>
     </div>
      }

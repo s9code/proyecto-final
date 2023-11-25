@@ -4,14 +4,18 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 35px;
+  background-color: hsla(248, 32%, 49%, 0.383);
+  border-radius: 5px;
 }
 .titulo_coleccion {
-  color: hsl(248, 32%, 49%);
+  color:white;
   margin-bottom: 20px;
 }
 .boton_coleccion {
+  border: 1px solid white;
   background-color: hsl(248, 32%, 49%);
-  color: aliceblue;
+  color: white;
   border-radius:5px;
   padding: 15px;
   width: 310px;
@@ -48,7 +52,5 @@
   padding: 5px;
 
 }
-.boton-and {
 
-}
 

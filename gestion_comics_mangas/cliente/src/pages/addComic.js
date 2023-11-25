@@ -1,3 +1,5 @@
+import '../estilos/sesion.css'
+import '../estilos/componentes.css'
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
@@ -110,14 +112,14 @@ function AddComic() {
               <input type='number' name='publicacion' placeholder='Introduce el año' onChange={handleChange} />
               {errors.publicacion && <span>{errors.publicacion}</span>}
             </div>
-            <button type='submit'>Crear comic</button>
+            <button className='btn' type='submit'>Crear comic</button>
           </form>
-          <button onClick={() => navigate('/comics')}>Volver</button>
+          <button className='btn' onClick={() => navigate('/comics')}>Volver</button>
         </div>
         :
-        <div>
-          <h3>{message}</h3>
-          <p><Link to='/usuario'>Ingresa con tu usuario</Link> o <Link to='/'>Crea una cuenta</Link></p>
+        <div className='contenedor_sesion'>
+          <p className='inicio_sesion'>{message}</p>
+          <p className='ingresa_usuario'><Link to='/usuario'>Ingresa con tu usuario</Link> o <Link to='/'>Crea una cuenta</Link></p>
         </div>
       }
     </div>

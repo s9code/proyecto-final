@@ -1,4 +1,6 @@
 import '../estilos/coleccion.css'
+import '../estilos/sesion.css'
+import '../estilos/componentes.css'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate, Link } from 'react-router-dom'
@@ -62,25 +64,25 @@ function Coleccion() {
         auth ?
       <div className='contenedor-general_coleccion'>
         <h1 className='titulo_coleccion'>Tus colecciones</h1>
-        <button className='boton_coleccion' onClick={() => navigate('/addcoleccion')}>Crear nueva colección</button>
+        <button className='boton_coleccion btn' onClick={() => navigate('/addcoleccion')}>Crear nueva colección</button>
         <div className='contenedor-coleccion'>
           {coleccion.map((coleccion) => (
             <div className='coleccion_comics' key={coleccion.id_coleccion}>
               <p className='coleccion_nombre'>{coleccion.nombre_coleccion}</p>
               <p>{coleccion.descrip_coleccion}</p>
               <div className='coleccion_botones'>
-                <button className='boton-coleccion_comic' onClick={() => handleDelete(coleccion.id_coleccion)}>Borrar</button>
-                <button className='boton-coleccion_comic' onClick={() => navigate (`/updatecoleccion/${coleccion.id_coleccion}`)}>Actualizar</button>
-                <button className='boton-coleccion_comic' onClick={() => handleVerColeccion(coleccion.id_coleccion)}>Ver colección</button>
+                <button className='boton-coleccion_comic btn' onClick={() => handleVerColeccion(coleccion.id_coleccion)}>Ver colección</button>
+                <button className='boton-coleccion_comic btn' onClick={() => handleDelete(coleccion.id_coleccion)}>Borrar</button>
+                <button className='boton-coleccion_comic btn' onClick={() => navigate (`/updatecoleccion/${coleccion.id_coleccion}`)}>Actualizar</button>
               </div>
             </div>
           ))}
         </div>
       </div>
     :
-    <div>
-      <h3>{message}</h3>
-      <p><Link to='/usuario'>Ingresa con tu usuario</Link> o <Link to='/'>Crea una cuenta</Link></p>
+    <div className='contenedor_sesion'>
+      <p className='inicio_sesion'>{message}</p>
+      <p className='ingresa_usuario'><Link to='/usuario'>Ingresa con tu usuario</Link> o <Link to='/'>Crea una cuenta</Link></p>
     </div>
     }
     

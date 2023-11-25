@@ -1,4 +1,5 @@
 import '../estilos/registro.css'
+import '../estilos/componentes.css'
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from "react-router-dom"
@@ -100,10 +101,10 @@ return (
         />
         {errors.password && <span className='error-message'>{errors.password}</span>}
       </div>
-      <button className='registro_usuario'>Crear usuario</button>
+      <button className='registro_usuario btn'>Crear usuario</button>
     </form>
       <p className='registro_cuenta'>¿Ya tienes una cuenta?</p>
-      <button className='registro_usuario' onClick={() => navigate('/usuario')}>Ingresar</button>
+      <button className='registro_usuario btn' onClick={() => navigate('/usuario')}>Ingresar</button>
       </div>
   </div>
   )

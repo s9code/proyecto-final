@@ -1,3 +1,5 @@
+import '../estilos/sesion.css'
+import '../estilos/componentes.css'
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import { useLocation, useNavigate, Link } from 'react-router-dom'
@@ -132,14 +134,14 @@ return (
           </input>
           {errors.publicacion && <span>{errors.publicacion}</span>}
         </div>
-          <button onClick={handleSubmit}>Actualizar</button>
+          <button className='btn' onClick={handleSubmit}>Actualizar</button>
         </form>
-        <button onClick={() => navigate('/comics')}>Volver</button>
+        <button className='btn' onClick={() => navigate('/comics')}>Volver</button>
     </div>
     :
     <div>
-      <h3>{message}</h3>
-      <p><Link to='/usuario'>Ingresa con tu usuario</Link> o <Link to='/'>Crea una cuenta</Link></p>
+      <p className='inicio_sesion'>{message}</p>
+      <p className='ingresa_usuario'><Link to='/usuario'>Ingresa con tu usuario</Link> o <Link to='/'>Crea una cuenta</Link></p>
     </div>
     }
   </div>

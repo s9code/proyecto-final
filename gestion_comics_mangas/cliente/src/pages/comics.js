@@ -1,4 +1,6 @@
 import '../estilos/comics.css'
+import '../estilos/sesion.css'
+import '../estilos/componentes.css'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate, Link } from 'react-router-dom'
@@ -95,11 +97,11 @@ function Comics() {
                 </div>
               <div className='container-comic_boton'>
                 <div className='boton-crud'>
-                <button className='boton-comic' onClick={() => handleDelete(comic.id_comic)}>Borrar</button>
-                <button className='boton-comic' onClick={() => navigate (`/update/${comic.id_comic}`)}>Actualizar</button>
+                <button className='boton-comic btn' onClick={() => handleDelete(comic.id_comic)}>Borrar</button>
+                <button className='boton-comic btn' onClick={() => navigate (`/update/${comic.id_comic}`)}>Actualizar</button>
                 </div>
                 <div>
-                <button className='boton-and' onClick={() => setSelectedComic(comic.id_comic)}>Añadir a colección</button>
+                <button className='boton-and btn' onClick={() => setSelectedComic(comic.id_comic)}>Añadir a colección</button>
                 </div>
               </div>
             </div>
@@ -124,16 +126,14 @@ function Comics() {
             </label>
             <button onClick={handleAsociarComicColeccion}>Asociar a colección</button>
           </div>
-          {/* --------------------------- */}
-  
           <button onClick={() => navigate('/addcomics')}>Añade un nuevo comic</button>
           <button onClick={() => navigate('/coleccion')}>Ir a colección</button>
         </div>
       ):
-    <div>
-      <h3>{message}</h3>
-      <p><Link to='/usuario'>Ingresa con tu usuario</Link> o <Link to='/'>Crea una cuenta</Link></p>
-    </div>
+      <div className='contenedor_sesion'>
+        <p className='inicio_sesion'>{message}</p>
+        <p className='ingresa_usuario'><Link to='/usuario'>Ingresa con tu usuario</Link> o <Link to='/'>Crea una cuenta</Link></p>
+      </div>
     }
     
   </div>
