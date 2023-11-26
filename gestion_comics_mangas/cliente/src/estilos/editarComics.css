@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 80vh;
+    height: 100vh;
 }
 .titulo-comic_editar {
     color: hsl(248, 32%, 49%);
@@ -27,10 +27,31 @@
   width: 200px;
   font-weight: 500;
   font-size: 16px;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 input {
   padding: 10px;
   width: 200px;
   margin-bottom: 15px;
+}
+.btn-actualizar, .btn-crear {
+  border: 1px solid white;
+  background-color: hsl(248, 32%, 49%);
+  color: white;
+  margin-top: 10px;
+  border-radius:5px;
+  padding: 15px;
+  width: 200px;
+  font-weight: 500;
+  font-size: 16px;
+}
+.contenedor-comic_input {
+  border-radius: 5px;
+  padding: 15px 0 15px 10px;
+  width: 300px;
+  font-size: 16px;
+}
+.error-message_comic {
+  display: block;
+  color: hsl(0, 100%, 74%);
 }

@@ -1,5 +1,6 @@
 import '../estilos/sesion.css'
 import '../estilos/componentes.css'
+import '../estilos/editarColecciones.css'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate, Link }  from 'react-router-dom'
@@ -74,7 +75,8 @@ function AddColeccion() {
         <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor='titulo'>Nombre de la colección</label>
-            <input type='text'
+            <input
+            type='text'
             placeholder='Introduce un nombre'
             name='titulo'
             onChange={handleChange}>
@@ -83,7 +85,8 @@ function AddColeccion() {
           </div>
           <div>
             <label htmlFor='descript'>Descripcion de la colección</label>
-            <input type='text'
+            <input
+            type='text'
             placeholder='Introduce una descripción'
             name='descrip'
             onChange={handleChange}>

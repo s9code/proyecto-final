@@ -99,43 +99,47 @@ return (
         <div>
           <label htmlFor='titulo'></label>
           <input type='text'
+          className={`contenedor-comic_input ${errors.titulo ? 'input-error' : ''}`}
           placeholder='Introduce el titulo'
           name='titulo'
           onChange={handleChange}>
           </input>
-          {errors.titulo && <span>{errors.titulo}</span>}
+          {errors.titulo && <span className='error-message'>{errors.titulo}</span>}
         </div>
         <div>
           <label htmlFor='autor'></label>
           <input 
+          className={`contenedor-comic_input ${errors.autor ? 'input-error' : ''}`}
           type='text' 
           placeholder='Introduce el autor'
           name='autor'
           onChange={handleChange}>
           </input>
-          {errors.autor && <span>{errors.autor}</span>}
+          {errors.autor && <span className='error-message'>{errors.autor}</span>}
         </div>
         <div>
           <label htmlFor='cover'></label>
           <input
+          className={`contenedor-comic_input ${errors.cover ? 'input-error' : ''}`}
           type='file'
           placeholder='Introduce el cover'
           name='cover'
           onChange={handleFileChange}>
           </input>
-          {errors.cover && <span>{errors.cover}</span>}
+          {errors.cover && <span className='error-message'>{errors.cover}</span>}
         </div>
         <div>
           <label htmlFor='publicacion'></label>
           <input
+          className={`contenedor-comic_input ${errors.publicacion ? 'input-error' : ''}`}
           type='number'
           placeholder='Introduce el año'
           name='publicacion'
           onChange={handleChange}>
           </input>
-          {errors.publicacion && <span>{errors.publicacion}</span>}
+          {errors.publicacion && <span className='error-message'>{errors.publicacion}</span>}
         </div>
-          <button className='btn' onClick={handleSubmit}>Actualizar</button>
+          <button className='btn-actualizar btn' onClick={handleSubmit}>Actualizar</button>
         </form>
         <button className='btn-volver_registro btn' onClick={() => navigate('/comics')}>Volver</button>
     </div>

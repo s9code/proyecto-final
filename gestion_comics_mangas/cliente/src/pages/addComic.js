@@ -95,25 +95,48 @@ function AddComic() {
           <form className='form-comic' onSubmit={handleSubmit} encType='multipart/form-data'>
             <div>
               <label htmlFor='titulo'></label>
-              <input type='text' name='titulo' placeholder='Introduce el titulo' onChange={handleChange} />
-              {errors.titulo && <span>{errors.titulo}</span>}
+              <input
+              className={`contenedor-comic_input ${errors.titulo ? 'input-error' : ''}`}
+              type='text'
+              name='titulo'
+              placeholder='Introduce el titulo'
+              onChange={handleChange}
+              />
+              {errors.titulo && <span className='error-message'>{errors.titulo}</span>}
             </div>
             <div>
               <label htmlFor='autor'></label>
-              <input type='text' name='autor' placeholder='Introduce el autor' onChange={handleChange} />
-              {errors.autor && <span>{errors.autor}</span>}
+              <input
+              className={`contenedor-comic_input ${errors.autor ? 'input-error' : ''}`}
+              type='text'
+              name='autor'
+              placeholder='Introduce el autor'
+              onChange={handleChange}
+              />
+              {errors.autor && <span className='error-message'>{errors.autor}</span>}
             </div>
             <div>
               <label htmlFor='cover'></label>
-              <input type='file' name='cover' onChange={handleFileChange} />
-              {errors.cover && <span>{errors.cover}</span>}
+              <input
+              className={`contenedor-comic_input ${errors.cover ? 'input-error' : ''}`}
+              type='file'
+              name='cover'
+              onChange={handleFileChange}
+              />
+              {errors.cover && <span className='error-message'>{errors.cover}</span>}
             </div>
             <div>
               <label htmlFor='publicacion'></label>
-              <input type='number' name='publicacion' placeholder='Introduce el año' onChange={handleChange} />
-              {errors.publicacion && <span>{errors.publicacion}</span>}
+              <input
+              className={`contenedor-comic_input ${errors.publicacion ? 'input-error' : ''}`}
+              type='number'
+              name='publicacion'
+              placeholder='Introduce el año'
+              onChange={handleChange}
+              />
+              {errors.publicacion && <span className='error-message'>{errors.publicacion}</span>}
             </div>
-            <button className='btn' type='submit'>Crear comic</button>
+            <button className='btn-crear btn' type='submit'>Crear comic</button>
           </form>
           <button className='btn-volver_registro btn' onClick={() => navigate('/comics')}>Volver</button>
         </div>

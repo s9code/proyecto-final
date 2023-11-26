@@ -1,5 +1,6 @@
 import '../estilos/sesion.css'
 import '../estilos/componentes.css'
+import '../estilos/editarColecciones.css'
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import { useLocation, useNavigate, Link } from 'react-router-dom'
