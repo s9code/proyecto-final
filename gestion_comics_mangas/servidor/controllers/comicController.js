@@ -40,10 +40,40 @@ router.post('/addcomics', upload.single('cover'), (req, res) => {
 // BORRAR
 router.delete('/comics/:id', (req, res) => {
   const comicId = req.params.id
-  const q = 'DELETE FROM comics WHERE id_comic = ?'
-  db.query(q, [comicId], (err, data) => {
-    if (err) return res.json(err)
-    return res.json('Comic borrado correctamente')
+
+  // Verificar si el cómic está asociado a alguna colección
+  const checkCollectionsQuery = 'SELECT * FROM comic_coleccion WHERE id_comic = ?'
+  db.query(checkCollectionsQuery, [comicId], (checkErr, checkData) => {
+    if (checkErr) {
+      return res.json(checkErr)
+    }
+
+    // Si el cómic está en alguna colección, bórralo de la colección primero
+    if (checkData && checkData.length > 0) {
+      const deleteFromCollectionsQuery = 'DELETE FROM comic_coleccion WHERE id_comic = ?'
+      db.query(deleteFromCollectionsQuery, [comicId], (deleteErr, deleteData) => {
+        if (deleteErr) {
+          return res.json(deleteErr)
+        }
+        // Después de borrar de la colección, borra el cómic de la tabla principal
+        const deleteFromComicsQuery = 'DELETE FROM comics WHERE id_comic = ?'
+        db.query(deleteFromComicsQuery, [comicId], (err, data) => {
+          if (err) {
+            return res.json(err)
+          }
+          return res.json('Comic eliminado correctamente')
+        })
+      })
+    } else {
+      // Si el cómic no está en ninguna colección, bórralo directamente de la tabla principal
+      const deleteFromComicsQuery = 'DELETE FROM comics WHERE id_comic = ?'
+      db.query(deleteFromComicsQuery, [comicId], (err, data) => {
+        if (err) {
+          return res.json(err)
+        }
+        return res.json('Comic eliminado correctamente')
+      })
+    }
   })
 })
 // -------------------------------------------------

@@ -1,5 +1,6 @@
 import '../estilos/sesion.css'
 import '../estilos/componentes.css'
+import '../estilos/editarComics.css'
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
@@ -89,32 +90,32 @@ function AddComic() {
   return (
     <div>
       {auth ?
-        <div>
-          <h2>Introduce un comic</h2>
-          <form onSubmit={handleSubmit} encType='multipart/form-data'>
+        <div className='container-editar'>
+          <h1 className='titulo-comic_editar'>Introduce un comic</h1>
+          <form className='form-comic' onSubmit={handleSubmit} encType='multipart/form-data'>
             <div>
-              <label htmlFor='titulo'>Titulo:</label>
+              <label htmlFor='titulo'></label>
               <input type='text' name='titulo' placeholder='Introduce el titulo' onChange={handleChange} />
               {errors.titulo && <span>{errors.titulo}</span>}
             </div>
             <div>
-              <label htmlFor='autor'>Autor:</label>
+              <label htmlFor='autor'></label>
               <input type='text' name='autor' placeholder='Introduce el autor' onChange={handleChange} />
               {errors.autor && <span>{errors.autor}</span>}
             </div>
             <div>
-              <label htmlFor='cover'>Cover:</label>
+              <label htmlFor='cover'></label>
               <input type='file' name='cover' onChange={handleFileChange} />
               {errors.cover && <span>{errors.cover}</span>}
             </div>
             <div>
-              <label htmlFor='publicacion'>Publicacion:</label>
+              <label htmlFor='publicacion'></label>
               <input type='number' name='publicacion' placeholder='Introduce el año' onChange={handleChange} />
               {errors.publicacion && <span>{errors.publicacion}</span>}
             </div>
             <button className='btn' type='submit'>Crear comic</button>
           </form>
-          <button className='btn' onClick={() => navigate('/comics')}>Volver</button>
+          <button className='btn-volver_registro btn' onClick={() => navigate('/comics')}>Volver</button>
         </div>
         :
         <div className='contenedor_sesion'>

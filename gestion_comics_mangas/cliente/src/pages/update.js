@@ -1,5 +1,6 @@
 import '../estilos/sesion.css'
 import '../estilos/componentes.css'
+import '../estilos/editarComics.css'
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import { useLocation, useNavigate, Link } from 'react-router-dom'
@@ -92,11 +93,11 @@ return (
   <div>
     {
     auth ?
-    <div>
-      <h2>Actualizar comic</h2>
-      <form onSubmit={handleSubmit} encType='multipart/form-data'>
+    <div className='container-editar'>
+      <h1 className='titulo-comic_editar'>Actualizar comic</h1>
+      <form className='form-comic'onSubmit={handleSubmit} encType='multipart/form-data'>
         <div>
-          <label htmlFor='titulo'>Actualizar Titulo:</label>
+          <label htmlFor='titulo'></label>
           <input type='text'
           placeholder='Introduce el titulo'
           name='titulo'
@@ -105,7 +106,7 @@ return (
           {errors.titulo && <span>{errors.titulo}</span>}
         </div>
         <div>
-          <label htmlFor='autor'>Actualizar Autor:</label>
+          <label htmlFor='autor'></label>
           <input 
           type='text' 
           placeholder='Introduce el autor'
@@ -115,7 +116,7 @@ return (
           {errors.autor && <span>{errors.autor}</span>}
         </div>
         <div>
-          <label htmlFor='cover'>Actualizar el cover:</label>
+          <label htmlFor='cover'></label>
           <input
           type='file'
           placeholder='Introduce el cover'
@@ -125,7 +126,7 @@ return (
           {errors.cover && <span>{errors.cover}</span>}
         </div>
         <div>
-          <label htmlFor='publicacion'>Publicacion:</label>
+          <label htmlFor='publicacion'></label>
           <input
           type='number'
           placeholder='Introduce el año'
@@ -136,7 +137,7 @@ return (
         </div>
           <button className='btn' onClick={handleSubmit}>Actualizar</button>
         </form>
-        <button className='btn' onClick={() => navigate('/comics')}>Volver</button>
+        <button className='btn-volver_registro btn' onClick={() => navigate('/comics')}>Volver</button>
     </div>
     :
     <div>

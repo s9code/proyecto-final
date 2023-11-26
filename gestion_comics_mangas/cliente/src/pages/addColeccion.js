@@ -69,8 +69,8 @@ function AddColeccion() {
     <div>
       {
         auth ?
-      <div>
-        <p>Crea una colección</p>
+      <div className='container-editar'>
+        <h1>Crea una colección</h1>
         <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor='titulo'>Nombre de la colección</label>

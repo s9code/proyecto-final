@@ -86,7 +86,6 @@ function ColeccionComics() {
           </div>
         </div>
         ))}
-        <button className='btn'onClick={() => navigate('/comics')}>Volver a tus comics</button>
         </div>
       </div>
     :

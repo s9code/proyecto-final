@@ -27,12 +27,14 @@
   background-color: white;
   padding: 15px;
   border-radius:5px;
+  
 }
 .coleccion_comics {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-bottom: 30px;
 }
 .coleccion_nombre {
   color: hsl(0, 100%, 74%);
@@ -50,7 +52,7 @@
   border-radius:2px;
   width: 100px;
   padding: 5px;
-
 }
+
 
 
