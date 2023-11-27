@@ -78,6 +78,7 @@ function Comics() {
         <div className='container-comics'>
           <h1 className='titulo-comic'>Todos tus Comics</h1>
           {/* MOSTRAR LOS COMICS */}
+          <button className='boton_comic btn' onClick={() => navigate('/addcomics')}>Añade un nuevo comic</button>
           <div className='comics-wrap'>
             {comics.map((comic) => (
               <div key={comic.id_comic} className="comic-card">
@@ -136,7 +137,6 @@ function Comics() {
               </div>
             ))}
           </div>
-          <button className='boton_comic btn' onClick={() => navigate('/addcomics')}>Añade un nuevo comic</button>
         </div>
       ) : (
         <div className='contenedor_sesion'>

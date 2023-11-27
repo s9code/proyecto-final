@@ -72,32 +72,34 @@ return (
   <div>
     {
       auth ?
-    <div>
-      <h2>Actualiza la colección</h2>
-      <form onSubmit={handleSubmit}>
+    <div className='container-editar'>
+      <h1 className='titulo-coleccion_editar'>Actualiza la colección</h1>
+      <form className='form-coleccion' onSubmit={handleSubmit}>
       <div>
-        <label htmlFor='titulo'>Actualizar el titulo:</label>
+        <label htmlFor='titulo'></label>
         <input
+        className={`contenedor-coleccion_input ${errors.titulo ? 'input-error' : ''}`}
         type='text'
-        placeholder='Introduce el titulo'
+        placeholder='Actualiza el nombre'
         name='titulo'
         onChange={handleChange}>
         </input>
-        {errors.titulo && <span>{errors.titulo}</span>}
+        {errors.titulo && <span className='error-message_coleccion'>{errors.titulo}</span>}
       </div>
       <div>
-        <label htmlFor='descrip'>Actualiza la descripcion:</label>
+        <label htmlFor='descrip'></label>
         <input
+        className={`contenedor-coleccion_input ${errors.descrip ? 'input-error' : ''}`}
         type='text'
-        placeholder='Introduce la descripcion'
+        placeholder='Actualiza la descripción'
         name='descrip'
         onChange={handleChange}>
         </input>
-        {errors.descrip && <span>{errors.descrip}</span>}
+        {errors.descrip && <span className='error-message_coleccion'>{errors.descrip}</span>}
       </div>
-        <button className='btn' onClick={handleSubmit}>Actualizar</button>
+        <button className='btn-crear btn' onClick={handleSubmit}>Actualizar</button>
       </form>
-      <button className='btn' onClick={() => navigate('/coleccion')}>Volver</button>
+      <button className='btn-volver_registro btn' onClick={() => navigate('/coleccion')}>Volver</button>
     </div>
     :
     <div className='contenedor_sesion'>

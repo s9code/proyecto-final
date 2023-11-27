@@ -102,7 +102,7 @@ function AddComic() {
               placeholder='Introduce el titulo'
               onChange={handleChange}
               />
-              {errors.titulo && <span className='error-message'>{errors.titulo}</span>}
+              {errors.titulo && <span className='error-message_comic'>{errors.titulo}</span>}
             </div>
             <div>
               <label htmlFor='autor'></label>
@@ -113,7 +113,7 @@ function AddComic() {
               placeholder='Introduce el autor'
               onChange={handleChange}
               />
-              {errors.autor && <span className='error-message'>{errors.autor}</span>}
+              {errors.autor && <span className='error-message_comic'>{errors.autor}</span>}
             </div>
             <div>
               <label htmlFor='cover'></label>
@@ -123,7 +123,7 @@ function AddComic() {
               name='cover'
               onChange={handleFileChange}
               />
-              {errors.cover && <span className='error-message'>{errors.cover}</span>}
+              {errors.cover && <span className='error-message_comic'>{errors.cover}</span>}
             </div>
             <div>
               <label htmlFor='publicacion'></label>
@@ -134,7 +134,7 @@ function AddComic() {
               placeholder='Introduce el año'
               onChange={handleChange}
               />
-              {errors.publicacion && <span className='error-message'>{errors.publicacion}</span>}
+              {errors.publicacion && <span className='error-message_comic'>{errors.publicacion}</span>}
             </div>
             <button className='btn-crear btn' type='submit'>Crear comic</button>
           </form>

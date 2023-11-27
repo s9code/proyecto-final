@@ -1,68 +1,94 @@
 .navbar {
   background-color: white;
   color: hsl(248, 32%, 49%);
-  padding: 50px 0px 20px 20px;
   display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 0;
-  left: -300px;
-  transition: left 0.3s ease-in-out;
-  width: 200px;
-  height: 80vh;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 50px;
+  font-weight: 400;
 }
-
-.navbar.active {
-  left: 0;
+.navbar-list {
+  display: flex;
+  flex-direction: row;
 }
-
-.navbar-name {
-  margin-bottom: 20px;
-}
-
 .navbar-list li {
-  margin-bottom: 10px;
+  padding: 10px;
 }
-
 .navbar-list li a {
   color: hsl(248, 32%, 49%);
 }
-
 .navbar-list li a:hover {
   text-decoration: underline;
 }
 
-.hamburger-menu {
-  width: 30px;
-  height: 25px;
-  cursor: pointer;
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  z-index: 999;
+@media only screen and (min-width: 1100px){
+  .navbar{
+    padding: 10px 150px;
+  }
 }
 
-.hamburger-icon {
-  width: 100%;
-  height: 3px;
-  background-color: hsl(248, 32%, 49%);
-  position: relative;
-}
-
-.hamburger-icon::before,
-.hamburger-icon::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 3px;
-  background-color: hsl(248, 32%, 49%);
-}
-
-
-.hamburger-icon::before {
-  top: -8px;
-}
-
-.hamburger-icon::after {
-  bottom: -8px;
-}
+@media only screen and (max-width: 700px){
+  .navbar {
+    background-color: white;
+    color: hsl(248, 32%, 49%);
+    padding: 50px 0px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: -300px;
+    transition: left 0.3s ease-in-out;
+    width: 200px;
+    height: 80vh;
+  }
+  .navbar-list {
+    display: flex;
+    flex-direction: column;
+  }
+  .navbar.active {
+    left: 0;
+  }
+  .navbar-name {
+    margin-bottom: 20px;
+  }
+  .navbar-list li {
+    margin-bottom: 10px;
+  }
+  .navbar-list li a {
+    color: hsl(248, 32%, 49%);
+  }
+  .navbar-list li a:hover {
+    text-decoration: underline;
+  }
+  .hamburger-menu {
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 999;
+  }
+  .hamburger-icon {
+    width: 100%;
+    height: 3px;
+    background-color: hsl(248, 32%, 49%);
+    position: relative;
+  }
+  .hamburger-icon::before,
+  .hamburger-icon::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background-color: hsl(248, 32%, 49%);
+  }
+  .hamburger-icon::before {
+    top: -8px;
+  }
+  .hamburger-icon::after {
+    bottom: -8px;
+  }
+ }

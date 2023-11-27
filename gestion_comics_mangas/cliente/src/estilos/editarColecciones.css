@@ -1,0 +1,57 @@
+.container-editar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+}
+.titulo-coleccion_editar {
+  color:hsl(248, 32%, 49%);
+}
+.form-coleccion {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 35px;
+  background-color: hsla(248, 32%, 49%, 0.383);
+  border-radius: 5px;
+}
+.btn-volver_registro {
+  border: 1px solid white;
+  background-color:  hsl(0, 100%, 74%);
+  color: white;
+  border-radius:5px;
+  padding: 15px;
+  width: 200px;
+  font-weight: 500;
+  font-size: 16px;
+  margin-top: 40px;
+}
+input {
+  padding: 10px;
+  width: 200px;
+  margin-bottom: 15px;
+}
+.btn-actualizar, .btn-crear {
+  border: 1px solid white;
+  background-color: hsl(248, 32%, 49%);
+  color: white;
+  margin-top: 10px;
+  border-radius:5px;
+  padding: 15px;
+  width: 200px;
+  font-weight: 500;
+  font-size: 16px;
+}
+.contenedor-coleccion_input {
+  border-radius: 5px;
+  padding: 15px 0 15px 10px;
+  width: 300px;
+  font-size: 16px;
+}
+.error-message_coleccion {
+  display: block;
+  color: hsl(0, 100%, 74%);
+}

@@ -1,67 +1,66 @@
 .container-comics {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
 }
 .container-comic_imagen {
-    padding: 35px;
-    background-color: hsla(248, 32%, 49%, 0.383);
+  padding: 35px;
+  background-color: hsla(248, 32%, 49%, 0.383);
 }
 .container-comic_texto {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 195px;
-    border: 1px solid white;
-    background-color: white;
-    color: hsl(0, 0%, 0%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 195px;
+  border: 1px solid white;
+  background-color: white;
+  color: hsl(0, 0%, 0%);
 }
 
 .boton-and{
-    background-color: hsl(0, 100%, 74%);
-    border: 1px solid white;
-    color: white;
-    padding: 5px;
-    width: 195px;
+  background-color: hsl(0, 100%, 74%);
+  border: 1px solid white;
+  color: white;
+  padding: 5px;
+  width: 195px;
 }
 .boton-comic {
-    background: none;
-    color: white;
-    border: 1px solid white;
-    border-radius:2px;
-    padding: 5px;
-    width: 98px;
+  background: none;
+  color: white;
+  border: 1px solid white;
+  border-radius:2px;
+  padding: 5px;
+  width: 98px;
 }
 .titulo-comic {
-    color: hsl(248, 32%, 49%);
+  color: hsl(248, 32%, 49%);
+  margin-bottom: 20px
 }
 .comics-wrap {
-    display: grid;
-    grid-template-columns: (1, 1fr);
-    grid-gap: 40px;
-    grid-auto-rows: (100px, auto);
-    margin-top: 20px;
-    margin-bottom: 35px;
+  display: grid;
+  grid-template-columns: (1, 1fr);
+  grid-gap: 40px;
+  grid-auto-rows: (100px, auto);
 }
 .comic-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .comic-imagen {
-    max-width: 125px;
-    height: 190px;
-    object-fit: cover;
+  max-width: 125px;
+  height: 190px;
+  object-fit: cover;
 }
 .texto_publi {
-    font-size: 10px;
+  font-size: 10px;
 }
 .texto_autor {
-    font-size: 12px;
+  font-size: 12px;
 }
 .boton_comic{
   border: 1px solid white;
@@ -73,4 +72,14 @@
   font-weight: 500;
   font-size: 16px;
   margin-bottom: 40px;
+}
+
+@media only screen and (min-width: 800px){
+  .comics-wrap {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 40px;
+    grid-auto-rows: (100px, auto);
+  }
+  
 }

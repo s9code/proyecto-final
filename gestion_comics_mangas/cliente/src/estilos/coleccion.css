@@ -1,15 +1,19 @@
 .contenedor-general_coleccion {
-  margin-top: 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 20px;
+  border-radius: 5px;
+  height: 90vh;
+}
+.contenedor-coleccion {
   background-color: hsla(248, 32%, 49%, 0.383);
+  padding: 35px;
   border-radius: 5px;
 }
 .titulo_coleccion {
-  color:white;
+  color:hsl(248, 32%, 49%);
   margin-bottom: 20px;
 }
 .boton_coleccion {
@@ -23,19 +27,15 @@
   font-size: 16px;
   margin-bottom: 40px;
 }
-.contenedor-coleccion {
-  background-color: white;
-  padding: 15px;
-  border-radius:5px;
-  margin-bottom: 20px;
-  
-}
 .coleccion_comics {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-bottom: 20px;
+  background-color: white;
+  padding: 15px;
+  border-radius:5px;
+  margin-bottom: 20px;
 }
 .coleccion_nombre {
   color: hsl(0, 100%, 74%);
@@ -53,6 +53,22 @@
   border-radius:2px;
   width: 100px;
   padding: 5px;
+}
+
+@media only screen and (min-width: 800px){
+  .contenedor-coleccion {
+    padding: 70px 35px 35px 35px;
+  }
+  .coleccion_comics {
+    margin-bottom: 50px;
+  }
+  .coleccion_botones {
+    gap: 20px;
+  }
+  .boton-coleccion_comic {
+    width: 200px;
+    height: 40px;
+  }
 }
 
 

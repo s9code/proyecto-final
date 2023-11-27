@@ -68,40 +68,41 @@ function AddColeccion() {
 
   return (
     <div>
-      {
-        auth ?
-      <div className='container-editar'>
-        <h1>Crea una colección</h1>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor='titulo'>Nombre de la colección</label>
-            <input
-            type='text'
-            placeholder='Introduce un nombre'
-            name='titulo'
-            onChange={handleChange}>
-            </input>
-            {errors.titulo && <span>{errors.titulo}</span>}
-          </div>
-          <div>
-            <label htmlFor='descript'>Descripcion de la colección</label>
-            <input
-            type='text'
-            placeholder='Introduce una descripción'
-            name='descrip'
-            onChange={handleChange}>
-            </input>
-            {errors.descrip && <span>{errors.descrip}</span>}
-          </div>
-          <button className='btn'>Crear colección</button>
-        </form>
-        <button className='btn' onClick={() => navigate('/coleccion')}>volver a tu coleccion</button>
-      </div>
-      :
-      <div className='contenedor_sesion'>
-        <p className='inicio_sesion'>{message}</p>
-        <p className='ingresa_usuario'><Link to='/usuario'>Ingresa con tu usuario</Link> o <Link to='/'>Crea una cuenta</Link></p>
-      </div>
+      {auth ?
+        <div className='container-editar'>
+          <h1 className='titulo-coleccion_editar'>Crea una colección</h1>
+          <form className='form-coleccion' onSubmit={handleSubmit}>
+            <div className='container-coleccion'>
+              <label htmlFor='titulo'></label>
+              <input
+              className={`contenedor-coleccion_input ${errors.titulo ? 'input-error' : ''}`}
+              type='text'
+              placeholder='Introduce un nombre'
+              name='titulo'
+              onChange={handleChange}>
+              </input>
+              {errors.titulo && <span className='error-message_coleccion'>{errors.titulo}</span>}
+            </div>
+            <div>
+              <label htmlFor='descrip'></label>
+              <input
+              className={`contenedor-coleccion_input ${errors.descrip ? 'input-error' : ''}`}
+              type='text'
+              placeholder='Introduce una descripción'
+              name='descrip'
+              onChange={handleChange}>
+              </input>
+              {errors.descrip && <span className='error-message_coleccion'>{errors.descrip}</span>}
+            </div>
+            <button className='btn-crear btn'>Crear colección</button>
+          </form>
+          <button className='btn-volver_registro btn' onClick={() => navigate('/coleccion')}>Volver</button>
+        </div>
+        :
+        <div className='contenedor_sesion'>
+          <p className='inicio_sesion'>{message}</p>
+          <p className='ingresa_usuario'><Link to='/usuario'>Ingresa con tu usuario</Link> o <Link to='/'>Crea una cuenta</Link></p>
+        </div>
       }
     </div>
   )
