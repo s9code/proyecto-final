@@ -41,7 +41,6 @@
     left: -300px;
     transition: left 0.3s ease-in-out;
     width: 200px;
-    height: 80vh;
   }
   .navbar-list {
     display: flex;
@@ -51,7 +50,12 @@
     left: 0;
   }
   .navbar-name {
-    margin-bottom: 20px;
+    margin-top: 20px;
+
+  }
+  .navbar-list {
+    margin-top: 20px;
+    margin-bottom: 300px;
   }
   .navbar-list li {
     margin-bottom: 10px;
