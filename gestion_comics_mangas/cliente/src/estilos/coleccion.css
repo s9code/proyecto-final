@@ -5,7 +5,7 @@
   justify-content: center;
   padding: 20px;
   border-radius: 5px;
-  height: 90vh;
+  margin-bottom: 60px;
 }
 .contenedor-coleccion {
   background-color: hsla(248, 32%, 49%, 0.383);
@@ -14,6 +14,7 @@
 }
 .titulo_coleccion {
   color:hsl(248, 32%, 49%);
+  margin-top: 100px;
   margin-bottom: 20px;
 }
 .boton_coleccion {
@@ -35,6 +36,7 @@
   background-color: white;
   padding: 15px;
   border-radius:5px;
+  margin-top: 40px;
   margin-bottom: 20px;
 }
 .coleccion_nombre {
