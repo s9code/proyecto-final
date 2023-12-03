@@ -10,34 +10,35 @@ function Comics() {
   const [auth, setAuth] = useState(false)
   const [comics, setComics] = useState([])
   const [coleccion, setColeccion] = useState([])
-  const [selectedComic, setSelectedComic] = useState('')
-  const [selectedColeccion, setSelectedColeccion] = useState('');
+  //const [selectedComic, setSelectedComic] = useState('')
+  //const [selectedColeccion, setSelectedColeccion] = useState('');
   const [selectedComicAndCollection, setSelectedComicAndCollection] = useState({ comicId: '', collectionId: '' });
   const [name, setName] = useState('')
   const [message, setMessage] = useState('')
   const navigate = useNavigate()
 
-  // OBTENER LA LISTA DE COMICS
+  // Obtener todos los comics 
   useEffect(() => {
     axios.get('http://localhost:8081/comics')
     .then(response => setComics(response.data))
-      .catch(error => console.error('Error al obtener colecciones:', error));
+      .catch(error => console.error('Error al obtener comics:', error));
   }, []);
 
-  // OBTENER LA LISTA DE COLECCIONES
+  // Obtener todas las colecciones
   useEffect(() => {
     axios.get('http://localhost:8081/coleccion')
     .then(response => setColeccion(response.data))
     .catch(error => console.error('Error al obtener colecciones:', error));
   }, []);
 
+  // Funciones que asocia la id de comic y coleccion para mostrar las colecciones de comics
   const handleAsociarComicColeccion = (comicId, collectionId) => {
     if (!comicId || !collectionId) {
       console.error('Selecciona una colección y un cómic');
       return;
     }
 
-    // ASOCIAR UN COMIC A UNA COLECCION
+    // Asociar un comic a una coleccion
     axios.post(`http://localhost:8081/comics/${comicId}/coleccion/${collectionId}`)
       .then(response => {
         console.log(response.data);
@@ -48,7 +49,7 @@ function Comics() {
       })
   
   }
-
+  // Función que configura axios para incluir las cookies para enviarlas y recibirlas para mantener y crear la sesion
   axios.defaults.withCredentials = true
   useEffect(() => {
     axios.get('http://localhost:8081')
@@ -62,7 +63,8 @@ function Comics() {
       }
     })
   }, [])
-
+  
+  // Funcion que borra la coleccion de comics creada
   const handleDelete = (id) => {
     try {
       axios.delete(`http://localhost:8081/comics/${id}`)

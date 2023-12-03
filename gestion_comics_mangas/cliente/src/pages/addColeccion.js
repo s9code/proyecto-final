@@ -7,7 +7,6 @@ import { useNavigate, Link }  from 'react-router-dom'
 
 
 function AddColeccion() {
-
   const [coleccion, setColeccion] = useState ({
     titulo: '',
     descrip: ''
@@ -19,11 +18,13 @@ function AddColeccion() {
   const [errors, setErrors] = useState({})
   const navigate = useNavigate()
 
+  // Función que actualiza los datos
   const handleChange = (e) => {
     const { name, value } = e.target;
     setColeccion({ ...coleccion, [name]: value })
   }
 
+  // Función al pulsar el boton revise que no estan vacio los datos
   const handleSubmit = (e) => {
     e.preventDefault()
 
@@ -36,9 +37,8 @@ function AddColeccion() {
       validationErrors.descrip = 'Descripción requerida'
     }
   
-    
+    // Función que revisa que los errores estén a 0 para confirmar que el usuario este logeado para acceder a coleccion 
     setErrors(validationErrors)
-
     if(Object.keys(validationErrors).length === 0) {
       axios.post('http://localhost:8081/addcoleccion', coleccion)
       .then(() => {
@@ -51,7 +51,7 @@ function AddColeccion() {
       console.log('Datos de coleccion incorrectos')
     }
   }
-
+  // Función que configura axios para incluir las cookies para enviarlas y recibirlas para mantener y crear la sesion
   axios.defaults.withCredentials = true
   useEffect(() => {
     axios.get('http://localhost:8081')

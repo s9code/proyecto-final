@@ -13,21 +13,23 @@ function AddComic() {
     publicacion: '',
   })
 
+  // Función useState que actualiza los datos
   const [auth, setAuth] = useState(false);
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
  
-
+  // Función que actualiza los datos
   const handleChange = (e) => {
     setComic({ ...comic, [e.target.name]: e.target.value })
   };
-
+  // Función que actualiza los datos de la imagen
   const handleFileChange = (e) => {
     setComic({ ...comic, cover: e.target.files[0] });
   };
 
+  // Función al pulsar el boton revise que no estan vacio los datos
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -45,16 +47,16 @@ function AddComic() {
     if (comic.publicacion === '') {
       validationErrors.publicacion = 'Año de publicación requerido';
     }
-
-    setErrors(validationErrors);
-
+  // Función que revisa que los errores estén a 0 para confirmar que el usuario este logeado para acceder a coleccion 
+  setErrors(validationErrors);
+    // Recoge los datos de la solicitud para agregar información, recoge pares clave/valor
     if (Object.keys(validationErrors).length === 0) {
       const formData = new FormData()
       formData.append('titulo', comic.titulo)
       formData.append('autor', comic.autor)
       formData.append('cover', comic.cover)
       formData.append('publicacion', comic.publicacion)
-
+      // el multipart/form-data hace posible insertar y que se muestre las imagenes del comic
       axios.post('http://localhost:8081/addcomics', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -70,6 +72,7 @@ function AddComic() {
       console.log('Datos del cómic incorrectos');
     }
   }
+  // Función que configura axios para incluir las cookies para enviarlas y recibirlas para mantener y crear la sesion
   axios.defaults.withCredentials = true
   useEffect(() => {
     axios.get('http://localhost:8081')

@@ -13,9 +13,9 @@ function Usuario() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
-
+  // Navigate se usa para dirigir a una ventena de la aplicación elegida
   const navigate = useNavigate()
-
+  // verifica que el usuario este registrado
   axios.defaults.withCredentials = true
   useEffect(() => {
     axios.get('http://localhost:8081')
@@ -29,7 +29,7 @@ function Usuario() {
       }
     })
   }, [])
-
+  // Si los datos están correctos, te dirige a coleccion
   axios.defaults.withCredentials = true
   const handleSubmit = (e)  => {
     e.preventDefault();

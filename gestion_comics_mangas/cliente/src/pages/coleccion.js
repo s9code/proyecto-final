@@ -14,7 +14,7 @@ function Coleccion() {
   const [message, setMessage] = useState('')
   const navigate = useNavigate();
 
-  // MOSTRAR LAS COLECCIONES
+  // Muestra las colecciones
   useEffect(() => {
     axios.get('http://localhost:8081/coleccion')
     .then(res => {
@@ -22,7 +22,7 @@ function Coleccion() {
     })
   })
 
-  // MOSTRAR LOS COMICS ALMACENADOS EN LAS COLECCIONES
+  // Muestra los comics almacenados en las colecciones
   const handleVerColeccion = (coleccionId) => {
     axios.get(`http://localhost:8081/coleccion/${coleccionId}/comics`)
       .then(res => {
@@ -34,7 +34,7 @@ function Coleccion() {
         console.error('Error al obtener los cómics de la colección:', error);
       })
   }
- 
+  // Función que configura axios para incluir las cookies para enviarlas y recibirlas para mantener y crear la sesion
   axios.defaults.withCredentials = true
   useEffect(() => {
     axios.get('http://localhost:8081')
@@ -49,6 +49,7 @@ function Coleccion() {
     })
   }, [])
 
+  // Funcion que borra la coleccion creada
   const handleDelete = (id) => {
     try {
       axios.delete(`http://localhost:8081/coleccion/${id}`)

@@ -18,14 +18,14 @@ function UpdateColeccion() {
   const [errors, setErrors] = useState({})
   const navigate = useNavigate()
   const location = useLocation()
-
+  // Este useEffect recoje dentro de la url la palabra almacenada en la segunda posición (0,1,2)
   const coleccionId = location.pathname.split('/')[2]
-  
+  // Se recoge los datos insertados por el ususario
   const handleChange = (e) => {
     const { name, value } = e.target;
     setColeccion({ ...coleccion, [name]: value })
   }
-
+  // Al pulsar el boton confirma que los datos esten correctos
   const handleSubmit = (e) => {
     e.preventDefault()
 

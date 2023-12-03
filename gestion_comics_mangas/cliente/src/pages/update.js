@@ -20,17 +20,18 @@ function Update() {
   const [errors, setErrors] = useState({})
   const navigate = useNavigate()
   const location = useLocation()
-
+  // Este useEffect recoje dentro de la url la palabra almacenada en la segunda posición (0,1,2)
   const comicId = location.pathname.split('/')[2]
-  
+  // Se recoge los datos insertados por el ususario
   const handleChange = (e) => {
     setComic({ ...comic, [e.target.name]: e.target.value })
   }
-
+  // Se recoge la imagen insertada por el ususario
   const handleFileChange = (e) => {
     setComic({ ...comic, cover: e.target.files[0] });
   };
   
+  // Al pulsar el boton confirma que los datos esten correctos
   const handleSubmit = (e) => {
     e.preventDefault();
   

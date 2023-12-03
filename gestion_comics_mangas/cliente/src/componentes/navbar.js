@@ -4,13 +4,14 @@ import axios from 'axios'
 import { useNavigate, Link } from 'react-router-dom'
 
 function Navbar() {
-
   const [auth, setAuth] = useState(false)
   const [name, setName] = useState('')
   const [message, setMessage] = useState('')
   const [menuOpen, setMenuOpen] = useState(false)
   const navigate = useNavigate();
 
+
+  // Tokken de Cookie para acceder con usuario registrado
   axios.defaults.withCredentials = true
   useEffect(() => {
     axios.get('http://localhost:8081')
@@ -25,6 +26,7 @@ function Navbar() {
     })
   }, [])
 
+  // Función para Deslogearte de la aplicacion
   const handleLogout = () => {
     axios.get('http://localhost:8081/usuario/logout')
     .then(res => {
@@ -33,6 +35,7 @@ function Navbar() {
     }).catch(err => console.log(err))
   }
 
+  // Funciones para hacer aparecer y desaparecer el navbar
   const toggleMenu = () => {
     setMenuOpen(!menuOpen)
   }

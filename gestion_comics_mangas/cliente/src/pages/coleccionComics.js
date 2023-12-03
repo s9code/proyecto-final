@@ -13,7 +13,7 @@ function ColeccionComics() {
   const location = useLocation();
   const [coleccionComics, setColeccionComics] = useState([]);
 
-
+  // Este useEffect recoje dentro de la url la palabra almacenada en la segunda posición (0,1,2)
   useEffect(() => {
     const coleccionComicId = location.pathname.split('/')[2]
 
@@ -27,6 +27,7 @@ function ColeccionComics() {
       });
   }, [location.pathname]);
 
+  // Funcion que borra la coleccion de comics creada
   const handleDelete = (id) => {
     const coleccionComicId = location.pathname.split('/')[2]
     try {
@@ -36,7 +37,8 @@ function ColeccionComics() {
       console.log(err)
     }
   }
-
+  
+  // Función que configura axios para incluir las cookies para enviarlas y recibirlas para mantener y crear la sesion
   axios.defaults.withCredentials = true
   useEffect(() => {
     axios.get('http://localhost:8081')

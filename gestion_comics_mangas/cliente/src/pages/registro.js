@@ -5,7 +5,7 @@ import axios from 'axios'
 import { useNavigate } from "react-router-dom"
 
 function Registro() {
-  
+
   const [values, setValues] = useState({
     name: '',
     email: '',
@@ -13,13 +13,15 @@ function Registro() {
   })
 
   const [errors, setErrors] = useState({})
+  // Navigate se usa para dirigir a una ventena de la aplicación elegida
   const navigate = useNavigate()
-
+  // Se recoge los datos insertados por el ususario
   const handleChange = (e) => {
     const {name , value } = e.target;
     setValues({...values, [name]: value})
   }
 
+  // Al pulsar el boton confirma que los datos esten correctos
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -37,9 +39,8 @@ function Registro() {
       validationErrors.password = 'Contraseña requerida'
     }
 
-
     setErrors(validationErrors)
-
+    // Si los datos están correctos, te dirige a coleccion
     if(Object.keys(validationErrors).length === 0) {
       console.log('usuario registrado')
       axios.post('http://localhost:8081/registro', values)
